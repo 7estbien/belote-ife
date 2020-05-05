@@ -11,9 +11,14 @@ void displayMenu(int m){
             printf("*                             *\n");
             printf("*******************************\n");
 
+            printf("What do you want to do ?\n\n");
 
+            printf("1 : Start a new game\n");
+            printf("2 : Display the leaderboard\n");
+            printf("3 : Exit\n");
 
             break;
+
 
         default:
             printf("Error. Exiting the program...");
