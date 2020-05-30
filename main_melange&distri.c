@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "melange&distri.h"
+#include "annonces.h"
 
 
 int main() {
@@ -15,5 +16,6 @@ int main() {
     init(game);
     mixAndDisrti(game,N,S,E,W,&distrib);
     displayHand(N,S,E,W,distrib);
+    action();
 
 }
