@@ -58,10 +58,11 @@ void mixAndDisrti(CARD game[],CARD N[],CARD S[],CARD E[],CARD W[],int* distrib)
 
 if (*distrib==0){
     distribN(tab,game,N,S,E,W);
-} else {if(*distrib==1){
-    distribE(tab,game,N,S,E,W);} else {if (*distrib==2) {
-        distribS(tab,game,N,S,E,W);} else {
-            distribW(tab,game,N,S,E,W);}
+	} else {if(*distrib==1){
+    		distribE(tab,game,N,S,E,W);
+			} else {if (*distrib==2) {
+        			distribS(tab,game,N,S,E,W);
+					} else {distribW(tab,game,N,S,E,W);}
     }
 }
 
