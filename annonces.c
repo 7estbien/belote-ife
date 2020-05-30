@@ -44,7 +44,7 @@ void amount(int* b) {
    do { printf("You can bid between 80 and 180\nHow much do you want to bid ? ");
     scanf("%d",&*b);
 
-} while ((*b<80) || (*b>180));
+} while ((*b<80) || (*b>180) || (*b%10!=0);
 
 }
 
@@ -62,7 +62,7 @@ void trump(int* t) {
 
 }
 
-void bid() {
+void bid(int *bet) {
 
     int t=0;
     int b=0;
@@ -81,6 +81,20 @@ void bid() {
             } else { if(t==4){
                 printf("diamond\n");}}}}
 
+     *bet=b;
 
 }
 
+
+void calculOrdi(CARD player[]) {
+
+    int i;
+    int ind_card=0;
+
+    for(i=0;i<8;i++) {
+        if(player[i].valeur>1 || player[i].valeur<5 || player[i].valeur==10) {
+            } else {ind_card=ind_card+1;}
+    }
+if
+
+}

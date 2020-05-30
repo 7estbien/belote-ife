@@ -12,11 +12,13 @@ typedef struct {
 
 void action();
 
-void bid();
+void bid(int *bet);
 
 void trump(int* t);
 
 void amount(int *b);
+
+void calculOrdi(CARD player[]);
 
 
 
