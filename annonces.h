@@ -1,14 +1,10 @@
-#ifndef MELANGEHEADER
-#define MELANGEHEADER
+#ifndef ANNONCESHEADER
+#define ANNONCESHEADER
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "melange&distri.h"
 
-
-typedef struct {
-    int valeur;
-    int color;
-}CARD;
 
 void action();
 
@@ -18,9 +14,13 @@ void trump(int* t);
 
 void amount(int *b);
 
+void displayTrump(int trump);
+
+void chooseTrump(CARD hand[]);
+
 void calculOrdi(CARD player[]);
 
 
 
 
-#endif // MELANGEHEADER
+#endif // ANNONCESHEADER

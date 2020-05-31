@@ -85,6 +85,41 @@ void bid(int *bet) {
 
 }
 
+/**
+* automatically choose the trump for the IA
+**/
+
+void chooseTrump(CARD hand[]){
+
+    int i,nbh=0,nbd=0,nbc=0,nbs=0,atrump=0;
+
+    for(i=0;i<8;i++){if(hand[i].color==0) {nbh=nbh+1;
+        }else{if(hand[i].color==1){nbd=nbd+1;
+            }else{if(hand[i].color==2){nbc=nbc+1;
+                }else{nbs=nbs+1;}}}}
+
+    if(nbh>nbc && nbh>nbd && nbh>nbs){atrump=0;}
+    if(nbd>nbh && nbd>nbc && nbd>nbs){atrump=1;}
+    if(nbc>nbh && nbc>nbd && nbc>nbs){atrump=2;}
+    if(nbs>nbh && nbs>nbd && nbs>nbc){atrump=3;}
+
+    displayTrump(atrump);
+}
+
+/**
+* display the trump
+**/
+
+void displayTrump(int trump) {
+
+    if(trump==0) {printf("heart");
+    }else{if(trump==1) {printf("diamond");
+        }else{if(trump==2){printf("club");
+            }else{if(trump==3){printf("spade");}}}}
+
+}
+
+
 
 void calculOrdi(CARD player[]) {
 
