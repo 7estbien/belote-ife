@@ -18,7 +18,9 @@ int main() {
     int tour=0;
     int pass=0;
     int stop=0;
-    int trumpN=0,trumpE=0,trumpW=0;
+    int trump=0;
+    int trumpN=0,trumpE=0,trumpW=0,trumpS=0;
+    int contractNS=0,contractEW=0;
 
     init(game);
     mixAndDisrti(game,N,S,E,W,&distrib);
@@ -40,11 +42,13 @@ int main() {
                         printf("EAST announce ");chooseTrump(E,&trumpE);
                         calculOrdi(E,&maxE,trumpE);
                         chooseAmount(&bet,maxE,&player,&tour,&pass,trumpE,&distrib,&stop);
-                            } else {action(&player,&tour,&pass,&distrib,&bet,&stop);}}}
+                            } else {action(&player,&tour,&pass,&distrib,&bet,&stop,&trumpS);}}}
 
 }while(stop==0);
 
     if(stop==1){bet=70;}
     if(stop==2){}
+
+winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW);
 
 }

@@ -4,7 +4,7 @@
 * asks the user what he wants to do and gets an answer
 **/
 
-void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop) {
+void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int *lastbet,int *trumpS) {
 
     int act=0;
 
@@ -24,7 +24,8 @@ do {
             *pass=*pass+1;
             if(*tour!=0 && *pass==3){*stop=2;}
     } else { if(act==2){
-        bid(&*bet);
+        bid(&*bet,&*trumpS);
+        *lastbet=*bet;
         *pass=0;
         } else { if(act==3){
             printf("You announce capot\n\n");
@@ -76,7 +77,7 @@ void trump(int* t) {
 
 }
 
-void bid(int *bet) {
+void bid(int *bet,int *trumpS) {
 
     int t=0;
     int b=0;
@@ -88,12 +89,16 @@ void bid(int *bet) {
 
      if(t==1){
         printf("heart\n");
+	*trumpS=0;
     } else { if(t==2){
         printf("diamond\n");
+	*trumpS=1;
         } else { if(t==3){
             printf("club\n");
+		*trumpS=2;
             } else { if(t==4){
-                printf("spade\n");}}}}
+                printf("spade\n");
+		*trumpS=3;}}}}
 
      *bet=b;
 
@@ -152,7 +157,7 @@ void calculOrdi(CARD hand[],int *maxi,int atrump) {
 * allow the IA to choose the amount of the bid
 **/
 
-void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,int *distrib,int *stop) {
+void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,int *distrib,int *stop,int *lastbet) {
 
     if((*bet+10)>maxi) {
             printf("pass\n\n");
@@ -165,6 +170,7 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
             else {*bet=*bet+10;
                     printf("%d ",*bet);
                     displayTrump(atrump);
+		    *lastbet=*bet;
                     *pass=0;
                     }
     if(*tour!=0 && *pass==3){*stop=2;}
@@ -180,3 +186,37 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 }
 
 
+void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW){
+
+printf("contrats : SOUTH %d, NORTH %d, EAST %d, WEST %d\n\n",lastS,lastN,lastE,lastW);
+
+    if(lastE>lastN && lastE>lastW && lastE>lastS){*trump=trumpE;
+                                                    *contractEW=lastE;
+                                                    *contractNS=0;
+                                                    printf("team E/W must realize %d\n",*contractEW);
+                                                    printf("Trump : ");
+                                                    displayTrump(*trump);}
+
+    if(lastN>lastE && lastN>lastW && lastN>lastS){*trump=trumpN;
+                                                    *contractNS=lastN;
+                                                    *contractEW=0;
+                                                    printf("team N/S must realize %d\n",*contractNS);
+                                                    printf("Trump : ");
+                                                    displayTrump(*trump);}
+
+    if(lastW>lastE && lastW>lastN && lastW>lastS){*trump=trumpW;
+                                                    *contractEW=lastW;
+                                                    *contractNS=0;
+                                                    printf("team E/W must realize %d\n",*contractEW);
+                                                    printf("Trump : ");
+                                                    displayTrump(*trump);}
+
+    if(lastS>lastE && lastS>lastW && lastS>lastN){*trump=trumpS;
+                                                    *contractNS=lastS;
+                                                    *contractEW=0;
+                                                    printf("team N/S must realize %d\n",*contractNS);
+                                                    printf("Trump : ");
+                                                    displayTrump(*trump);}
+
+
+}
