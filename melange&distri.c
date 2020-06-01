@@ -156,11 +156,11 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
     printf("\n");
 
     if (distrib==0){
-    printf("NORTH distribute");
+    printf("NORTH distribute\n\n");
     } else {if(distrib==1){
-        printf("EAST distribute");} else {if (distrib==2) {
-            printf("SOUTH distribute");} else {
-                printf("WEST distribute");}
+        printf("EAST distribute\n\n");} else {if (distrib==2) {
+            printf("SOUTH distribute\n\n");} else {
+                printf("WEST distribute\n\n");}
     }
 }
     printf("\n");
