@@ -6,21 +6,21 @@
 #include "melange&distri.h"
 
 
-void action();
+void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop);
 
 void bid(int *bet);
 
 void trump(int* t);
 
-void amount(int *b);
+void amount(int *b,int bet);
 
 void displayTrump(int trump);
 
-void chooseTrump(CARD hand[]);
+void chooseTrump(CARD hand[],int *atrump);
 
-void calculOrdi(CARD player[]);
+void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,int *distrib,int *stop);
 
-
+void calculOrdi(CARD hand[],int *maxi,int atrump);
 
 
 #endif // ANNONCESHEADER
