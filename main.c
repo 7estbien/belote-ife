@@ -3,7 +3,7 @@
 #include <time.h>
 
 #include "Menus.h"
-#include "melange&distri.h"
+#include "melange_distri.h"
 #include "annonces.h"
 
 
@@ -25,7 +25,7 @@ srand(time(NULL));
     int trumpN=0,trumpE=0,trumpW=0,trumpS=0;
     int contractNS=0,contractEW=0;
 
-    //displayMenu(1); We display the n°1 menu, which is the home menu.
+    //displayMenu(1); We display the nÂ°1 menu, which is the home menu.
 
 
     init(game);
