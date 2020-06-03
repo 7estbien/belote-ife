@@ -23,16 +23,31 @@ do {
         printf("You pass\n\n");
             *pass=*pass+1;
             if(*tour!=0 && *pass==3){*stop=2;}
+
     } else { if(act==2){
         bid(&*bet,&*trumpS);
         *lastbet=*bet;
         *pass=0;
         } else { if(act==3){
-            printf("You announce capot\n\n");
+
             *pass=0;
+            *bet=170;
+            *lastbet=*bet;
+            trump(&*trumpS);
+            *trumpS=*trumpS-1;
+            printf("You announce capot ");
+            displayTrump(*trumpS);
+
             } else { if(act==4){
-                printf("You announce general\n\n");
+
         	*pass=0;
+            *bet=170;
+            *lastbet=*bet;
+            trump(&*trumpS);
+            *trumpS=*trumpS-1;
+            printf("You announce general ");
+            displayTrump(*trumpS);
+
                 } else { if(act==5){
                     printf("You announce coinche\n\n");
         	    *pass=0;
@@ -56,10 +71,10 @@ do {
 
 void amount(int* b,int bet) {
 
-   do { printf("You can bid between 80 and 180\nHow much do you want to bid ? ");
+   do { printf("You can bid between 80 and 160 and more than the others\nHow much do you want to bid ? ");
     scanf("%d",&*b);
 
-} while ((*b<80) || (*b>180) || (*b%10!=0) || (*bet<bet+10));
+} while ((*b<80) || (*b>160) || (*b%10!=0) || (*b<bet+10));
 
 }
 
@@ -69,7 +84,7 @@ void amount(int* b,int bet) {
 
 void trump(int* t) {
 
-    do { printf("Which trump ? 1: Club, 2: Spade, 3: Heart, 4: Diamond : ");
+    do { printf("Which trump ? 1: Heart, 2: Diamond, 3: Club, 4: Spade : ");
     scanf("%d",&*t);
     printf("You have to choose a number between 1 and 4\n");
 
@@ -108,19 +123,19 @@ void bid(int *bet,int *trumpS) {
 * automatically choose the trump for the IA
 **/
 
-void chooseTrump(CARD hand[]){
+void chooseTrump(CARD hand[],int *atrump){
 
-    int i,nbh=0,nbd=0,nbc=0,nbs=0,atrump=0;
+    int i,nbh=0,nbd=0,nbc=0,nbs=0;
 
     for(i=0;i<8;i++){if(hand[i].color==0) {nbh=nbh+1;
         }else{if(hand[i].color==1){nbd=nbd+1;
             }else{if(hand[i].color==2){nbc=nbc+1;
                 }else{nbs=nbs+1;}}}}
 
-    if(nbh>nbc && nbh>nbd && nbh>nbs){atrump=0;}
-    if(nbd>nbh && nbd>nbc && nbd>nbs){atrump=1;}
-    if(nbc>nbh && nbc>nbd && nbc>nbs){atrump=2;}
-    if(nbs>nbh && nbs>nbd && nbs>nbc){atrump=3;}
+    if(nbh>nbc && nbh>nbd && nbh>nbs){*atrump=0;}
+    if(nbd>nbh && nbd>nbc && nbd>nbs){*atrump=1;}
+    if(nbc>nbh && nbc>nbd && nbc>nbs){*atrump=2;}
+    if(nbs>nbh && nbs>nbd && nbs>nbc){*atrump=3;}
 
 }
 
