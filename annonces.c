@@ -17,7 +17,7 @@ void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int 
 
 do {
     printf("What do you want to announce ?\n");
-    scanf("%d",&act);
+    GetAndCheck(&act);
 
     if(act==1){
         printf("You pass\n\n");
@@ -65,6 +65,14 @@ do {
 
 }
 
+void GetAndCheck(int *number){
+
+    char input[5];
+
+    fgets(input,5,stdin);
+    *number=atoi(input);
+
+}
 /**
 * allow the user to bid
 **/
@@ -72,7 +80,7 @@ do {
 void amount(int* b,int bet) {
 
    do { printf("You can bid between 80 and 160 and more than the others\nHow much do you want to bid ? ");
-    scanf("%d",&*b);
+        GetAndCheck(&*b);
 
 } while ((*b<80) || (*b>160) || (*b%10!=0) || (*b<bet+10));
 
@@ -85,7 +93,7 @@ void amount(int* b,int bet) {
 void trump(int* t) {
 
     do { printf("Which trump ? 1: Heart, 2: Diamond, 3: Club, 4: Spade : ");
-    scanf("%d",&*t);
+    GetAndCheck(&*t);
     printf("You have to choose a number between 1 and 4\n");
 
     }while((*t<1) || (*t>4));

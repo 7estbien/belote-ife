@@ -11,6 +11,8 @@ void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int 
 
 void bid(int *bet,int *trumpS);
 
+void GetAndCheck(int *number);
+
 void trump(int* t);
 
 void amount(int *b,int bet);
