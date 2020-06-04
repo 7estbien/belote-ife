@@ -59,13 +59,12 @@ void mixAndDisrti(CARD game[],CARD N[],CARD S[],CARD E[],CARD W[],int* distrib)
 if (*distrib==0){
     distribN(tab,game,N,S,E,W);
 	} else {if(*distrib==1){
-    		distribE(tab,game,N,S,E,W);
+    		distribW(tab,game,N,S,E,W);
 			} else {if (*distrib==2) {
         			distribS(tab,game,N,S,E,W);
-					} else {distribW(tab,game,N,S,E,W);}
+					} else {distribE(tab,game,N,S,E,W);}
     }
 }
-
 
 }
 
@@ -158,9 +157,9 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
     if (distrib==0){
     printf("NORTH distribute\n\n");
     } else {if(distrib==1){
-        printf("EAST distribute\n\n");} else {if (distrib==2) {
+        printf("WEST distribute\n\n");} else {if (distrib==2) {
             printf("SOUTH distribute\n\n");} else {
-                printf("WEST distribute\n\n");}
+                printf("EAST distribute\n\n");}
     }
 }
     printf("\n");

@@ -29,7 +29,7 @@ srand(time(NULL));
     //displayMenu(1); We display the n°1 menu, which is the home menu.
 
 
-    init(game);
+init(game);
     mixAndDisrti(game,N,S,E,W,&distrib);
     displayHand(N,S,E,W,distrib);
     distrib=distrib+1;
@@ -54,9 +54,14 @@ srand(time(NULL));
 }while(stop==0);
 
     if(stop==1){bet=70;}
+
+
+
+ winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW);
+
     if(stop==2){}
 
-winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW);
+
 
 
 
