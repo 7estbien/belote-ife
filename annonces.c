@@ -164,8 +164,7 @@ void calculOrdi(CARD hand[],int *maxi,int atrump) {
         if(hand[i].color!=atrump && (hand[i].valeur!=7 || hand[i].valeur!=3)) {
                 loose=loose+1;} else {if(hand[i].color!=atrump && (hand[i].valeur<2 || hand[i].valeur==5)){
                     loose=loose+1;}}}
-    *maxi=70;
-    //*maxi=170-loose*15;
+    *maxi=170-loose*15;
 }
 
 /**
@@ -180,7 +179,7 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
                    if(*tour==0 && *pass==4){
                     *stop=1;
                     printf("everyone has passed, cards are distributed again\n\n");
-                    sleep(2);}
+                    sleep(3);}
 
                      }
             else {*bet=*bet+10;

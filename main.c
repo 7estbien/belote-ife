@@ -29,11 +29,11 @@ srand(time(NULL));
     //displayMenu(1); We display the n°1 menu, which is the home menu.
 
 
-init(game);
+do {init(game);
     mixAndDisrti(game,N,S,E,W,&distrib);
     displayHand(N,S,E,W,distrib);
     distrib=distrib+1;
-
+    stop=0;
 
     do {if (distrib==1 || distrib==5){
         printf("WEST announce ");chooseTrump(W,&trumpW);
@@ -53,16 +53,11 @@ init(game);
 
 }while(stop==0);
 
-    if(stop==1){bet=70;}
-
-
+}while(stop==1);
 
  winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW);
 
     if(stop==2){}
-
-
-
 
 
     return EXIT_SUCCESS;
