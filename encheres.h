@@ -1,5 +1,5 @@
-#ifndef ANNONCESHEADER
-#define ANNONCESHEADER
+#ifndef ENCHERESHEADER
+#define ENCHERESHEADER
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -108,4 +108,4 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW);
 
 
-#endif // ANNONCESHEADER
+#endif // ENCHERESHEADER
