@@ -222,7 +222,7 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
     if((*bet+10)>maxi) {
             printf("pass\n\n");
             *pass=*pass+1;
-                   if(*tour==0 && *pass==4){
+                   if(*tour==0 && *pass==3){
                     *stop=1;
                     printf("everyone has passed, cards are distributed again\n\n");
                     sleep(3);}
@@ -231,7 +231,7 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
             else {*bet=*bet+10;
                     printf("%d ",*bet);
                     displayTrump(atrump);
-		    *lastbet=*bet;
+                    *lastbet=*bet;
                     *pass=0;
                     }
     if(*tour!=0 && *pass==3){*stop=2;}
