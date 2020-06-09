@@ -4,7 +4,7 @@
 
 #include "Menus.h"
 #include "melange_distri.h"
-#include "annonces.h"
+#include "encheres.h"
 
 
 int main()
@@ -25,6 +25,7 @@ srand(time(NULL));
     int trumpN=0,trumpE=0,trumpW=0,trumpS=0;
     int lastN=0,lastE=0,lastW=0,lastS=0;
     int contractNS=0,contractEW=0;
+    int coinche=0;
 
     //displayMenu(1); We display the n°1 menu, which is the home menu.
 
@@ -49,7 +50,7 @@ do {init(game);
                         printf("EAST announce ");chooseTrump(E,&trumpE);
                         calculOrdi(E,&maxE,trumpE);
                         chooseAmount(&bet,maxE,&player,&tour,&pass,trumpE,&distrib,&stop,&lastE);
-                            } else {action(&player,&tour,&pass,&distrib,&bet,&stop,&lastS,&trumpS);}}}
+                            } else {action(&player,&tour,&pass,&distrib,&bet,&stop,&lastS,&trumpS,&coinche);}}}
 
 }while(stop==0);
 

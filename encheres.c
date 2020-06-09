@@ -10,9 +10,10 @@
 * @param stop - an indicator, modified by this function
 * @param lastbet - the last bet of the player, modified by this function
 * @param trumpS - the trump chosen by the player, modified by this function
+* @param coinche - an integer indicating if the player announced coinche
 **/
 
-void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int *lastbet,int *trumpS) {
+void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int *lastbet,int *trumpS,int *coinche) {
 
     int act=0;
 
@@ -56,9 +57,11 @@ do {
             printf("You announce general ");
             displayTrump(*trumpS);
 
-                } else { if(act==5){
-                    printf("You announce coinche\n\n");
+                } else { if(act==5){ if(*bet<80) {printf("You can't announce coinche if nobody announced a contract\n");
+                                        act=6;}
+                else {printf("You announce coinche\n\n");
         	    *pass=0;
+        	    *coinche=1;}
                     } else { printf("You have to input a number between 1 and 5\n");}}}}}
 
 } while ((act<1) || (act>5));
@@ -95,10 +98,10 @@ void GetAndCheck(int *number){
 
 void amount(int* b,int bet) {
 
-   do { printf("You can bid between 80 and 160 and more than the others\nHow much do you want to bid ? ");
+   do { printf("You can bid between 80 and 170 and more than the others\nHow much do you want to bid ? ");
         GetAndCheck(&*b);
 
-} while ((*b<80) || (*b>160) || (*b%10!=0) || (*b<bet+10));
+} while ((*b<80) || (*b>170) || (*b%10!=0) || (*b<bet+10));
 
 }
 

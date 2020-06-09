@@ -16,9 +16,10 @@
 * @param stop - an indicator, modified by this function
 * @param lastbet - the last bet of the player, modified by this function
 * @param trumpS - the trump chosen by the player, modified by this function
+* @param coinche - an integer indicating if the player announced coinche
 **/
 
-void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int *lastbet,int *trumpS);
+void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int *lastbet,int *trumpS,int *coinche);
 
 /**
 * Get and check the input of the player
