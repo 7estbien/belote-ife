@@ -13,8 +13,8 @@ void init(CARD game[]){
     {
         for(val=0;val<8;val++)
         {
-            game[i].valeur=val;
-            game[i].color=col;
+            game[i].valeur=val; //attribute a value to the cards
+            game[i].color=col; //attribute a color to the card
             i++;
         }
     }
@@ -52,15 +52,20 @@ void mixAndDisrti(CARD game[],CARD N[],CARD S[],CARD E[],CARD W[],int* distrib)
     int i,r,temp=0;
 	int tab[32];
 
+	//create an array of 32 values
+
     for (i=0; i<32; i++){
-            tab[i]=i;
-            }
+            tab[i]=i;}
+
+    //mix the array previously created
+
     for (i=0; i<32; i++) {
             r = i + rand() % (32-i);
             temp = tab[i];
             tab[i] = tab[r];
             tab[r] = temp;
             }
+    //appoint the player that distribute
 
     *distrib=rand()%4;
 
@@ -168,7 +173,6 @@ int i,k=0;
     }
 }
 
-
 /**
 * display the hand of the player
 * @param N - the array containing the cards of the player NORTH
@@ -182,6 +186,8 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
 {
     int i;
 
+    //display the players
+
     printf("\t\t\t\t\tNORTH\n\n\n\n\n");
 
     printf("EAST");
@@ -190,20 +196,20 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
 
     printf("\t\t\t\t\tSOUTH\n\n \t\t\t\tHere is your hand :\n\n\t\t\t\t");
 
+    //display the cards of the player
+
     for(i=0;i<8;i++){
     displayCard(S[i]);
     printf("\n\t\t\t\t");}
 
-
-    printf("\n");
+    //display the player that distributed cards
 
     if (distrib==0){
-    printf("NORTH distribute\n\n");
+    printf("\nNORTH distribute\n\n");
     } else {if(distrib==1){
-        printf("WEST distribute\n\n");} else {if (distrib==2) {
-            printf("SOUTH distribute\n\n");} else {
-                printf("EAST distribute\n\n");}
+        printf("\nWEST distribute\n\n");} else {if (distrib==2) {
+            printf("\nSOUTH distribute\n\n");} else {
+                printf("\nEAST distribute\n\n");}
     }
 }
-    printf("\n");
 }

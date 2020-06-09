@@ -17,6 +17,8 @@ void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int 
 
     int act=0;
 
+    //display the different actions
+
     printf("1: Pass\n");
     printf("2: Bid\n");
     printf("3: Capot\n");
@@ -29,7 +31,7 @@ do {
     GetAndCheck(&act);
 
     if(act==1){
-        printf("You pass\n\n");
+        printf("\nYou pass\n\n");
             *pass=*pass+1;
             if(*tour!=0 && *pass==3){*stop=2;}
 
@@ -44,7 +46,7 @@ do {
             *lastbet=*bet;
             trump(&*trumpS);
             *trumpS=*trumpS-1;
-            printf("You announce capot ");
+            printf("\nYou announce capot ");
             displayTrump(*trumpS);
 
             } else { if(act==4){
@@ -54,24 +56,25 @@ do {
             *lastbet=*bet;
             trump(&*trumpS);
             *trumpS=*trumpS-1;
-            printf("You announce general ");
+            printf("\nYou announce general ");
             displayTrump(*trumpS);
 
                 } else { if(act==5){ if(*bet<80) {printf("You can't announce coinche if nobody announced a contract\n");
                                         act=6;}
-                else {printf("You announce coinche\n\n");
+                else {printf("\nYou announce coinche\n\n");
         	    *pass=0;
         	    *coinche=1;}
                     } else { printf("You have to input a number between 1 and 5\n");}}}}}
 
-} while ((act<1) || (act>5));
+} while ((act<1) || (act>5)); //the loop continues until the player input an expected value
 
-*player=*player+1;
+*player=*player+1; //indicates the number of players that have played during one tour
 
+    //at the end of the tour when each player have announced something
     if(*player==4) {
             *tour=*tour+1;
             *player=0;
-            *distrib=*distrib-3;
+            *distrib=*distrib-3; //we go back to the player at the left of the distributor
 } else {*distrib=*distrib+1;}
 
 }
@@ -101,7 +104,7 @@ void amount(int* b,int bet) {
    do { printf("You can bid between 80 and 170 and more than the others\nHow much do you want to bid ? ");
         GetAndCheck(&*b);
 
-} while ((*b<80) || (*b>170) || (*b%10!=0) || (*b<bet+10));
+} while ((*b<80) || (*b>170) || (*b%10!=0) || (*b<bet+10)); //the loop continues until the player input a correct value
 
 }
 
@@ -116,7 +119,7 @@ void trump(int* t) {
     GetAndCheck(&*t);
     printf("You have to choose a number between 1 and 4\n");
 
-    }while((*t<1) || (*t>4));
+    }while((*t<1) || (*t>4)); //the loop continues until the player input a correct value
 
 }
 
@@ -136,6 +139,8 @@ void bid(int *bet,int *trumpS) {
 
     printf("You announce %d ",b);
 
+    //attribute the number of the trump corresponding to the input of the user
+
      if(t==1){
         printf("heart\n");
 	*trumpS=0;
@@ -149,7 +154,7 @@ void bid(int *bet,int *trumpS) {
                 printf("spade\n");
 		*trumpS=3;}}}}
 
-     *bet=b;
+     *bet=b; //the value of the last bet is updated
 
 }
 
@@ -163,10 +168,14 @@ void chooseTrump(CARD hand[],int *atrump){
 
     int i,nbh=0,nbd=0,nbc=0,nbs=0;
 
+    //count the number of cards of each color
+
     for(i=0;i<8;i++){if(hand[i].color==0) {nbh=nbh+1;
         }else{if(hand[i].color==1){nbd=nbd+1;
             }else{if(hand[i].color==2){nbc=nbc+1;
                 }else{nbs=nbs+1;}}}}
+
+    //compare the number of cards of each color
 
     if(nbh>nbc && nbh>nbd && nbh>nbs){*atrump=0;}
     if(nbd>nbh && nbd>nbc && nbd>nbs){*atrump=1;}
@@ -222,11 +231,11 @@ void calculOrdi(CARD hand[],int *maxi,int atrump) {
 
 void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,int *distrib,int *stop,int *lastbet) {
 
-    if((*bet+10)>maxi) {
+    if((*bet+10)>maxi) { //test if the AI can announce higher than the last player
             printf("pass\n\n");
             *pass=*pass+1;
-                   if(*tour==0 && *pass==3){
-                    *stop=1;
+                   if(*tour==0 && *pass==3){ //if all the players pass during the first tour
+                    *stop=1; //variable enabling to get back to the beginning of the program
                     printf("everyone has passed, cards are distributed again\n\n");
                     sleep(3);}
 
@@ -241,11 +250,13 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 
     *player=*player+1;
 
+//at the end of the tour when every player announced something
+
     if(*player==4) {
             *tour=*tour+1;
             *player=0;
-            *distrib=*distrib-3;
-} else {*distrib=*distrib+1;}
+            *distrib=*distrib-3; //we go back to the player at the left of the distributor
+} else {*distrib=*distrib+1;} //next player
 
 }
 
