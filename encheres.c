@@ -42,7 +42,7 @@ do {
         } else { if(act==3){
 
             *pass=0;
-            *bet=170;
+            *bet=162;
             *lastbet=*bet;
             trump(&*trumpS);
             *trumpS=*trumpS-1;
@@ -52,7 +52,7 @@ do {
             } else { if(act==4){
 
         	*pass=0;
-            *bet=170;
+            *bet=162;
             *lastbet=*bet;
             trump(&*trumpS);
             *trumpS=*trumpS-1;
@@ -307,3 +307,66 @@ void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trum
 
 
 }
+
+
+
+
+
+void squareTest(CARD hand[],int *square,int *pts){
+
+    int i,k,nbr=0;
+    int value=2;
+
+    for(k=0;k<5;k++){
+
+        for(i=0;i<8;i++){
+            if(hand[i].valeur==value){nbr=nbr+1;}
+        }
+        if(nbr==4){if(value==2){*pts=150;
+                                *square=1;
+                        }else{if(value==3){*pts=100;
+                                            *square=2;
+                            }else{if(value==5){*pts=100;
+                                                *square=4;
+                                }else{if(value==6){*pts=100;
+                                                    *square=5;
+                                    }else{*pts=200;
+                                            *square=3;}}}}}
+
+        nbr=0;
+        value=value+1; //we go to the next value
+    }
+
+}
+
+
+
+void sequenceTest(CARD hand[],int square,int *pts){
+
+    int k,col;
+    int ace=0,king=0,queen=0,jack=0,ten=0;
+
+    for(col=0;col<4;col++){
+
+            for(k=0;k<8;k++){
+
+            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
+
+            if(hand[k].color==col && hand[k].valeur==6){king=1;}
+
+            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
+
+            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
+
+            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
+            }
+
+    if(ace==1 && king==1 && queen==1 && jack==1 && ten==1 && square!=2 && square!=3 && square!=4 && square!=5){*pts=*pts+100;
+
+        }else{if(square!=5 && square!=4 && square!=3 && ((ace==1 && king==1 && queen==1 && jack==1 && ten==1 && square==2)||(ace==1 && king==1 && queen==1 && jack==1))){*pts=*pts+50;
+
+            }else{if(square!=4 && square!=5 && ((ace==1 && king==1 && queen==1) || (ace==1 && king==1 && queen==1 && jack==1 && ten==1 && square==2 && square==3) || (ace==1 && king==1 && queen==1 && jack==1 && square==3))){*pts=*pts+20;
+
+
+
+}}}}}
