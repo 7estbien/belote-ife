@@ -106,7 +106,11 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 * @param contractEW - the number of points the team EAST WEST have to win, modified by the function
 **/
 
-void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW);
+void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW,int *distrib);
 
+void squareTest(CARD hand[],int *pts,int *square);
+void sequence5Test(CARD hand[],int *pts);
+void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,int *stop);
+void announcePlayer(int *player,int *distrib,int *stop,int *square,int *pts);
 
 #endif // ENCHERESHEADER

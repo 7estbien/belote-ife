@@ -33,7 +33,11 @@ do {
     if(act==1){
         printf("\nYou pass\n\n");
             *pass=*pass+1;
-            if(*tour!=0 && *pass==3){*stop=2;}
+            if(*pass==3 && *bet!=70){*stop=2;}
+            if(*tour==0 && *pass==4){ //if all the players pass during the first tour
+                    *stop=1; //variable enabling to get back to the beginning of the program
+                    printf("everyone has passed, cards are distributed again\n\n");
+                    sleep(3);}
 
     } else { if(act==2){
         bid(&*bet,&*trumpS);
@@ -234,7 +238,7 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
     if((*bet+10)>maxi) { //test if the AI can announce higher than the last player
             printf("pass\n\n");
             *pass=*pass+1;
-                   if(*tour==0 && *pass==3){ //if all the players pass during the first tour
+                   if(*tour==0 && *pass==4){ //if all the players pass during the first tour
                     *stop=1; //variable enabling to get back to the beginning of the program
                     printf("everyone has passed, cards are distributed again\n\n");
                     sleep(3);}
@@ -246,7 +250,7 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
                     *lastbet=*bet;
                     *pass=0;
                     }
-    if(*tour!=0 && *pass==3){*stop=2;}
+    if(*pass==3 && *bet!=70){*stop=2;}
 
     *player=*player+1;
 
@@ -275,78 +279,94 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 * @param contractEW - the number of points the team EAST WEST have to win, modified by the function
 **/
 
-void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW){
+void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW, int *distrib){
 
     if(lastE>lastN && lastE>lastW && lastE>lastS){*trump=trumpE;
                                                     *contractEW=lastE;
                                                     *contractNS=0;
                                                     printf("team E/W must realize %d\n",*contractEW);
                                                     printf("Trump : ");
-                                                    displayTrump(*trump);}
+                                                    displayTrump(*trump);
+                                                    *distrib=3;}
 
     if(lastN>lastE && lastN>lastW && lastN>lastS){*trump=trumpN;
                                                     *contractNS=lastN;
                                                     *contractEW=0;
                                                     printf("team N/S must realize %d\n",*contractNS);
                                                     printf("Trump : ");
-                                                    displayTrump(*trump);}
+                                                    displayTrump(*trump);
+                                                    *distrib=0;}
 
     if(lastW>lastE && lastW>lastN && lastW>lastS){*trump=trumpW;
                                                     *contractEW=lastW;
                                                     *contractNS=0;
                                                     printf("team E/W must realize %d\n",*contractEW);
                                                     printf("Trump : ");
-                                                    displayTrump(*trump);}
+                                                    displayTrump(*trump);
+                                                    *distrib=1;}
 
     if(lastS>lastE && lastS>lastW && lastS>lastN){*trump=trumpS;
                                                     *contractNS=lastS;
                                                     *contractEW=0;
                                                     printf("team N/S must realize %d\n",*contractNS);
                                                     printf("Trump : ");
-                                                    displayTrump(*trump);}
+                                                    displayTrump(*trump);
+                                                    *distrib=2;}
 
 
 }
 
 
 
-
-
-void squareTest(CARD hand[],int *square,int *pts){
+void squareTest(CARD hand[],int *pts,int *square){
 
     int i,k,nbr=0;
     int value=2;
 
-    for(k=0;k<5;k++){
+    for(k=0;k<6;k++){
 
         for(i=0;i<8;i++){
             if(hand[i].valeur==value){nbr=nbr+1;}
         }
-        if(nbr==4){if(value==2){*pts=150;
-                                *square=1;
-                        }else{if(value==3){*pts=100;
-                                            *square=2;
-                            }else{if(value==5){*pts=100;
-                                                *square=4;
-                                }else{if(value==6){*pts=100;
-                                                    *square=5;
-                                    }else{*pts=200;
-                                            *square=3;}}}}}
 
-        nbr=0;
-        value=value+1; //we go to the next value
+        if(nbr==4){ switch(value) {
+
+                    case 2 :
+                        *pts=150;
+                        break;
+                    case 3 :
+                        *pts=100;
+                        break;
+                    case 4 :
+                        *pts=200;
+                        break;
+                    case 5 :
+                        *pts=100;
+                        break;
+                    case 6 :
+                        *pts=100;
+                        break;
+                    case 7 :
+                        *pts=100;
+                        break;
+
+                    default :
+                        printf("Error");
+        }
+        *square=1;
     }
+    nbr=0;
+    value=value+1; //we go to the next value
+}}
 
-}
 
-
-
-void sequenceTest(CARD hand[],int square,int *pts){
+void sequence5Test(CARD hand[],int *pts){
 
     int k,col;
-    int ace=0,king=0,queen=0,jack=0,ten=0;
 
     for(col=0;col<4;col++){
+
+        int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
 
             for(k=0;k<8;k++){
 
@@ -359,14 +379,172 @@ void sequenceTest(CARD hand[],int square,int *pts){
             if(hand[k].color==col && hand[k].valeur==4){jack=1;}
 
             if(hand[k].color==col && hand[k].valeur==3){ten=1;}
+
+            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
+
+            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
+
+            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
             }
 
-    if(ace==1 && king==1 && queen==1 && jack==1 && ten==1 && square!=2 && square!=3 && square!=4 && square!=5){*pts=*pts+100;
-
-        }else{if(square!=5 && square!=4 && square!=3 && ((ace==1 && king==1 && queen==1 && jack==1 && ten==1 && square==2)||(ace==1 && king==1 && queen==1 && jack==1))){*pts=*pts+50;
-
-            }else{if(square!=4 && square!=5 && ((ace==1 && king==1 && queen==1) || (ace==1 && king==1 && queen==1 && jack==1 && ten==1 && square==2 && square==3) || (ace==1 && king==1 && queen==1 && jack==1 && square==3))){*pts=*pts+20;
 
 
+if(ace==1 && king==1 && queen==1 && jack==1 && ten==1){*pts=100;}
+if(king==1 && queen==1 && jack==1 && ten==1 && nine==1){*pts=100;}
+if(queen==1 && jack==1 && ten==1 && nine==1 && eight==1){*pts=100;}
+if(jack==1 && ten==1 && nine==1 && eight==1 && seven==1){*pts=100;}
 
-}}}}}
+}}
+
+void sequence4Test(CARD hand[],int *pts){
+int k,col;
+
+    for(col=0;col<4;col++){
+
+        int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
+
+            for(k=0;k<8;k++){
+
+            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
+
+            if(hand[k].color==col && hand[k].valeur==6){king=1;}
+
+            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
+
+            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
+
+            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
+
+            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
+
+            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
+
+            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
+            }
+
+if(ace==1 && king==1 && queen==1 && jack==1){*pts=50;}
+if(king==1 && queen==1 && jack==1 && ten==1){*pts=50;}
+if(queen==1 && jack==1 && ten==1 && nine==1){*pts=50;}
+if(jack==1 && ten==1 && nine==1 && eight==1){*pts=50;}
+if(ten==1 && nine==1 && eight==1 && seven==1){*pts=50;}
+
+}}
+
+
+void sequence3Test(CARD hand[],int *pts){
+
+int k,col;
+
+    for(col=0;col<4;col++){
+
+        int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
+
+            for(k=0;k<8;k++){
+
+            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
+
+            if(hand[k].color==col && hand[k].valeur==6){king=1;}
+
+            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
+
+            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
+
+            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
+
+            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
+
+            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
+
+            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
+            }
+
+if(ace==1 && king==1 && queen==1){*pts=20;}
+if(king==1 && queen==1 && jack==1){*pts=20;}
+if(queen==1 && jack==1 && ten==1){*pts=20;}
+if(jack==1 && ten==1 && nine==1){*pts=20;}
+if(ten==1 && nine==1 && eight==1){*pts=20;}
+if(nine==1 && eight==1 && seven==1){*pts=20;}
+
+
+}}
+
+void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,int *stop){
+
+    squareTest(hand,&*pts,&*square);
+
+            switch (*square) {
+
+            case 1 :
+                printf("all four\n");
+                break;
+
+            case 0 :
+                sequence5Test(hand,&*pts);
+                switch (*pts){
+                case 100 :
+                    printf("hundred\n");
+                    break;
+
+                case 0 :
+                    sequence4Test(hand,&*pts);
+                        switch(*pts){
+                    case 50:
+                        printf("fifty\n");
+                        break;
+
+                    case 0 :
+                        sequence3Test(hand,&*pts);
+                            switch(*pts){
+                            case 20 :
+                                printf("tierce\n");
+                                break;
+
+                            case 0 :
+                                printf("pass\n");
+                                break;
+
+                            default :
+                                printf("error\n");
+                                break;}}}}
+
+    *player=*player+1;
+
+    if(*player==4){*stop=3;
+                    *distrib=*distrib-3;
+            }else{*distrib=*distrib+1;}
+
+}
+
+
+void announcePlayer(int *player,int *distrib,int *stop,int *square,int *pts){
+
+    int act=0;
+
+    //display choices of the player
+
+    printf("1: All four\n");
+    printf("2: Tierce\n");
+    printf("3: Fifty\n");
+    printf("4: A Hundred\n");
+
+    do {
+    printf("What do you want to announce ?\n");
+    GetAndCheck(&act);
+
+
+
+
+} while ((act<1) || (act>5));
+
+
+    *player=*player+1; //indicates the number of players that have played during one tour
+
+    //at the end of the tour when each player have announced something
+    if(*player==4) {*stop=3;
+                    *distrib=*distrib-3;
+        } else {*distrib=*distrib+1;}
+
+}
+
+
+
