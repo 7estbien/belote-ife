@@ -2,11 +2,6 @@
 
 
 
-/**
-* Create the 32 cards of the game
-* @param game - an array containing the 32 cards of the game
-**/
-
 void init(CARD game[]){
     int val,col,i=0;
     for(col=0;col<4;col++)
@@ -20,10 +15,6 @@ void init(CARD game[]){
     }
 }
 
-/**
-* display one card
-* @param card - a structure containing integers representing the valor and the color of a card
-**/
 
 void displayCard(CARD card)
 {
@@ -36,15 +27,6 @@ printf(" %s ",ColCard[card.color]);
 
 }
 
-/**
-* Mix and distribute cards to the players
-* @param game - an array containing all the cards of the game
-* @param N - the array containing the cards of the player NORTH
-* @param S - the array containing the cards of the player SOUTH
-* @param E - the array containing the cards of the player EAST
-* @param W - the array containing the cards of the player WEST
-* @param distrib - an integer indicating the player that distribute
-**/
 
 
 void mixAndDisrti(CARD game[],CARD N[],CARD S[],CARD E[],CARD W[],int* distrib)
@@ -81,15 +63,6 @@ if (*distrib==0){
 
 }
 
-/**
-* distribution of cards by NORTH
-* @param tabl - an array used to mix cards
-* @param game - an array containing all the cards of the game
-* @param N - the array containing the cards of the player NORTH
-* @param S - the array containing the cards of the player SOUTH
-* @param E - the array containing the cards of the player EAST
-* @param W - the array containing the cards of the player WEST
-**/
 
 void distribN(int tabl[],CARD game[],CARD N[],CARD S[],CARD E[],CARD W[]){
 
@@ -104,15 +77,7 @@ int i,k=0;
     }
 }
 
-/**
-* distribution of cards by EAST
-* @param tabl - an array used to mix cards
-* @param game - an array containing all the cards of the game
-* @param N - the array containing the cards of the player NORTH
-* @param S - the array containing the cards of the player SOUTH
-* @param E - the array containing the cards of the player EAST
-* @param W - the array containing the cards of the player WEST
-**/
+
 
 void distribE(int tabl[],CARD game[],CARD N[],CARD S[],CARD E[],CARD W[]){
 
@@ -127,15 +92,7 @@ int i,k=0;
     }
 }
 
-/**
-* distribution of cards by SOUTH
-* @param tabl - an array used to mix cards
-* @param game - an array containing all the cards of the game
-* @param N - the array containing the cards of the player NORTH
-* @param S - the array containing the cards of the player SOUTH
-* @param E - the array containing the cards of the player EAST
-* @param W - the array containing the cards of the player WEST
-**/
+
 
 void distribS(int tabl[],CARD game[],CARD N[],CARD S[],CARD E[],CARD W[]){
 
@@ -150,15 +107,6 @@ int i,k=0;
     }
 }
 
-/**
-* distribution of cards by WEST
-* @param tabl - an array used to mix cards
-* @param game - an array containing all the cards of the game
-* @param N - the array containing the cards of the player NORTH
-* @param S - the array containing the cards of the player SOUTH
-* @param E - the array containing the cards of the player EAST
-* @param W - the array containing the cards of the player WEST
-**/
 
 void distribW(int tabl[],CARD game[],CARD N[],CARD S[],CARD E[],CARD W[]){
 
@@ -173,42 +121,11 @@ int i,k=0;
     }
 }
 
-/**
-* display the hand of the player
-* @param N - the array containing the cards of the player NORTH
-* @param S - the array containing the cards of the player SOUTH
-* @param E - the array containing the cards of the player EAST
-* @param W - the array containing the cards of the player WEST
-* @param distrib - an integer indicating the player that distribute
-**/
 
 void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
 {
     int i;
 
-    printf("SOUTH\n");
-    for(i=0;i<8;i++){
-    displayCard(S[i]);
-    printf("\n");}
-
-
-    printf("NORTH\n");
-    for(i=0;i<8;i++){
-    displayCard(N[i]);
-    printf("\n");}
-
-    printf("WEST\n");
-    for(i=0;i<8;i++){
-    displayCard(W[i]);
-    printf("\n");}
-
-    printf("EAST\n");
-    for(i=0;i<8;i++){
-    displayCard(E[i]);
-    printf("\n");}
-
-
-/**
   //display the players
 
     printf("\t\t\t\t\tNORTH\n\n\n\n\n");
@@ -234,5 +151,5 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
             printf("\nSOUTH distribute\n\n");} else {
                 printf("\nEAST distribute\n\n");}
     }
-}**/
+}
 }
