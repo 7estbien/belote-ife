@@ -70,6 +70,9 @@ do {
             *distrib=*distrib-3; //we go back to the player at the left of the distributor
 } else {*distrib=*distrib+1;}
 
+
+
+
 }
 
 
@@ -143,10 +146,10 @@ void chooseTrump(CARD hand[],int *atrump){
 
     //count the number of cards of each color
 
-    for(i=0;i<8;i++){if(hand[i].color==0) {nbh=nbh+1;
-        }else{if(hand[i].color==1){nbd=nbd+1;
-            }else{if(hand[i].color==2){nbc=nbc+1;
-                }else{nbs=nbs+1;}}}}
+    for(i=0;i<8;i++){if(hand[i].color==0) {nbh++;
+        }else{if(hand[i].color==1){nbd++;
+            }else{if(hand[i].color==2){nbc++;
+                }else{nbs++;}}}}
 
     //compare the number of cards of each color
 
@@ -174,8 +177,8 @@ void calculOrdi(CARD hand[],int *maxi,int atrump) {
 
     for(i=0;i<8;i++) {
         if(hand[i].color!=atrump && (hand[i].valeur!=7 || hand[i].valeur!=3)) {
-                loose=loose+1;} else {if(hand[i].color!=atrump && (hand[i].valeur<2 || hand[i].valeur==5)){
-                    loose=loose+1;}}}
+                loose++;} else {if(hand[i].color!=atrump && (hand[i].valeur<2 || hand[i].valeur==5)){
+                    loose++;}}}
     *maxi=170-loose*15;
 }
 
@@ -250,238 +253,5 @@ void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trum
 
 
 }
-
-
-
-void squareTest(CARD hand[],int *pts,int *square){
-
-    int i,k,nbr=0;
-    int value=2;
-
-    for(k=0;k<6;k++){
-
-        for(i=0;i<8;i++){
-            if(hand[i].valeur==value){nbr=nbr+1;}
-        }
-
-        if(nbr==4){ switch(value) {
-
-                    case 2 :
-                        *pts=150;
-                        break;
-                    case 3 :
-                        *pts=100;
-                        break;
-                    case 4 :
-                        *pts=200;
-                        break;
-                    case 5 :
-                        *pts=100;
-                        break;
-                    case 6 :
-                        *pts=100;
-                        break;
-                    case 7 :
-                        *pts=100;
-                        break;
-
-                    default :
-                        printf("error\n");
-        }
-        *square=1;
-    }
-    nbr=0;
-    value=value+1; //we go to the next value
-}}
-
-
-void sequence5Test(CARD hand[],int *pts){
-
-    int k,col;
-
-    for(col=0;col<4;col++){
-
-        int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
-
-            for(k=0;k<8;k++){
-
-            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
-
-            if(hand[k].color==col && hand[k].valeur==6){king=1;}
-
-            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
-
-            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
-
-            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
-
-            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
-
-            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
-
-            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
-            }
-
-
-
-if(ace==1 && king==1 && queen==1 && jack==1 && ten==1){*pts=100;}
-if(king==1 && queen==1 && jack==1 && ten==1 && nine==1){*pts=100;}
-if(queen==1 && jack==1 && ten==1 && nine==1 && eight==1){*pts=100;}
-if(jack==1 && ten==1 && nine==1 && eight==1 && seven==1){*pts=100;}
-
-}}
-
-void sequence4Test(CARD hand[],int *pts){
-int k,col;
-
-    for(col=0;col<4;col++){
-
-        int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
-
-            for(k=0;k<8;k++){
-
-            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
-
-            if(hand[k].color==col && hand[k].valeur==6){king=1;}
-
-            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
-
-            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
-
-            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
-
-            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
-
-            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
-
-            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
-            }
-
-if(ace==1 && king==1 && queen==1 && jack==1){*pts=50;}
-if(king==1 && queen==1 && jack==1 && ten==1){*pts=50;}
-if(queen==1 && jack==1 && ten==1 && nine==1){*pts=50;}
-if(jack==1 && ten==1 && nine==1 && eight==1){*pts=50;}
-if(ten==1 && nine==1 && eight==1 && seven==1){*pts=50;}
-
-}}
-
-
-void sequence3Test(CARD hand[],int *pts){
-
-int k,col;
-
-    for(col=0;col<4;col++){
-
-        int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
-
-            for(k=0;k<8;k++){
-
-            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
-
-            if(hand[k].color==col && hand[k].valeur==6){king=1;}
-
-            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
-
-            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
-
-            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
-
-            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
-
-            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
-
-            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
-            }
-
-if(ace==1 && king==1 && queen==1){*pts=20;}
-if(king==1 && queen==1 && jack==1){*pts=20;}
-if(queen==1 && jack==1 && ten==1){*pts=20;}
-if(jack==1 && ten==1 && nine==1){*pts=20;}
-if(ten==1 && nine==1 && eight==1){*pts=20;}
-if(nine==1 && eight==1 && seven==1){*pts=20;}
-
-
-}}
-
-void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,int *stop){
-
-    squareTest(hand,&*pts,&*square);
-
-            switch (*square) {
-
-            case 1 : // if the AI has an all four
-                printf("all four\n");
-                break;
-
-            case 0 : // if the AI doesn't have an all four
-                sequence5Test(hand,&*pts);
-                switch (*pts){
-                case 100 : // if the AI has a sequence of 5 cards
-                    printf("hundred\n");
-                    break;
-
-                case 0 : // if the AI doesn't have a sequence of 5 cards
-                    sequence4Test(hand,&*pts);
-                        switch(*pts){
-                    case 50: // if the AI has a sequence of 4 cards
-                        printf("fifty\n");
-                        break;
-
-                    case 0 : // if the AI doesn't have a sequence of 4 cards
-                        sequence3Test(hand,&*pts);
-                            switch(*pts){
-                            case 20 : // if the AI has a sequence of 3 cards
-                                printf("tierce\n");
-                                break;
-
-                            case 0 : // if the AI has no sequence
-                                printf("pass\n");
-                                break;
-
-                            default :
-                                printf("error\n");
-                                break;}}}}
-
-    *player=*player+1; //indicates the number of players that have played during one tour
-
-    //at the end of the tour when each player have announced something
-
-    if(*player==4){*stop=3;
-                    *distrib=*distrib-3;
-            }else{*distrib=*distrib+1;}
-
-}
-
-
-void announcePlayer(int *player,int *distrib,int *stop,int *square,int *pts){
-
-    int act=0;
-
-    //display choices of the player
-
-    printf("1: All four\n");
-    printf("2: Tierce\n");
-    printf("3: Fifty\n");
-    printf("4: A Hundred\n");
-
-    do {
-    printf("What do you want to announce ?\n");
-    GetAndCheck(&act);
-
-
-
-
-} while ((act<1) || (act>5));
-
-
-    *player=*player+1; //indicates the number of players that have played during one tour
-
-    //at the end of the tour when each player have announced something
-    if(*player==4) {*stop=3;
-                    *distrib=*distrib-3;
-        } else {*distrib=*distrib+1;}
-
-}
-
 
 

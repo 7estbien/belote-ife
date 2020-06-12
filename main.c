@@ -5,6 +5,7 @@
 #include "Menus.h"
 #include "melange_distri.h"
 #include "encheres.h"
+#include "annonces.h"
 
 
 int main()
@@ -35,7 +36,7 @@ srand(time(NULL));
 do {init(game);
     mixAndDisrti(game,N,S,E,W,&distrib);
     displayHand(N,S,E,W,distrib);
-    distrib=distrib+1; // we go to the next player
+    distrib++; // we go to the next player
     stop=0;
 
     do {if (distrib==1 || distrib==5){
@@ -64,7 +65,7 @@ do {init(game);
  winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW,&distrib);
  player=0;
 
-    if(stop==2){do{if (distrib==1 || distrib==5){
+        do{if (distrib==1 || distrib==5){
         printf("WEST announce ");
         announcementsAI(W,&squareW,&Wpts,&distrib,&player,&stop);
 
@@ -79,11 +80,11 @@ do {init(game);
                         announcementsAI(E,&squareE,&Epts,&distrib,&player,&stop);
 
 
-                            } else {announcePlayer(&player,&distrib,&stop,&squareS,&Spts);}}}
+                            } else {announceP(S,&player,&distrib,&stop,&squareS,&Spts);}}}
 
 
     }while(stop!=3);
 
     return EXIT_SUCCESS;
 
-}}
+}

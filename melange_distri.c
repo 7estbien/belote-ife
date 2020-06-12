@@ -126,6 +126,31 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
 {
     int i;
 
+/**
+            printf("SOUTH\n");
+    for(i=0;i<8;i++){
+    displayCard(S[i]);
+    printf("\n");}
+
+    printf("NORTH\n");
+    for(i=0;i<8;i++){
+    displayCard(N[i]);
+    printf("\n");}
+
+    printf("EAST\n");
+    for(i=0;i<8;i++){
+
+    displayCard(E[i]);
+    printf("\n");}
+
+
+            printf("WEST\n");
+for(i=0;i<8;i++){
+    displayCard(W[i]);
+    printf("\n");}
+
+
+**/
   //display the players
 
     printf("\t\t\t\t\tNORTH\n\n\n\n\n");

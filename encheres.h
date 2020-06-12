@@ -115,46 +115,4 @@ void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trum
 * @param square - an indicator, takes the value 1 if the AI has four cards with the same value, modified by this function
 **/
 
-void squareTest(CARD hand[],int *pts,int *square);
-
-/**
-* Tests if the AI has a sequence of 5 cards
-* @param hand - an array containing the cards of the AI
-* @param pts - points corresponding to the cards that the AI have, modified by this function
-**/
-
-void sequence5Test(CARD hand[],int *pts);
-
-/**
-* Tests if the AI has a sequence of 4 cards
-* @param hand - an array containing the cards of the AI
-* @param pts - points corresponding to the cards that the AI have, modified by this function
-**/
-
-void sequence4Test(CARD hand[],int *pts);
-
-/**
-* Tests if the AI has a sequence of 3 cards
-* @param hand - an array containing the cards of the AI
-* @param pts - points corresponding to the cards that the AI have, modified by this function
-**/
-
-void sequence3Test(CARD hand[],int *pts);
-
-/**
-* Compares the results of the tests and display the announce of the AI
-* @param hand - an array containing the cards of the AI
-* @param square - an indicator, takes the value 1 if the AI has four cards with the same value, modified by this function
-* @param pts - points corresponding to the cards that the AI have, modified by this function
-* @param distrib - the number of the player, modified by this function
-* @param player - the number of player that played in this tour, modified by this function
-* @param stop - an indicator, modified by this function
-**/
-
-void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,int *stop);
-
-
-
-void announcePlayer(int *player,int *distrib,int *stop,int *square,int *pts);
-
 #endif // ENCHERESHEADER
