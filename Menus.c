@@ -19,7 +19,6 @@ void displayMenu(int m){
 
             break;
 
-
         default:
             printf("Error. Exiting the program...");
             return EXIT_FAILURE;

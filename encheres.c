@@ -26,7 +26,8 @@ do {
             if(*tour==0 && *pass==4){ //if all the players pass during the first tour
                     *stop=1; //variable enabling to get back to the beginning of the program
                     printf("everyone has passed, cards are distributed again\n\n");
-                    sleep(3);}
+
+                }
 
     } else { if(act==2){
         bid(&*bet,&*trumpS);
@@ -54,21 +55,30 @@ do {
 
                 } else { if(act==5){ if(*bet<80) {printf("You can't announce coinche if nobody announced a contract\n");
                                         act=6;}
-                else {printf("\nYou announce coinche\n\n");
+                else {
+                printf("\nYou announce coinche\n\n");
         	    *pass=0;
         	    *coinche=1;}
-                    } else { printf("You have to input a number between 1 and 5\n");}}}}}
+                    } else {
+                        printf("You have to input a number between 1 and 5\n");
+                    }
+                }
+            }
+        }
+    }
 
 } while ((act<1) || (act>5)); //the loop continues until the player input an expected value
 
-*player=*player+1; //indicates the number of players that have played during one tour
+    *player=*player+1; //indicates the number of players that have played during one tour
 
     //at the end of the tour when each player have announced something
     if(*player==4) {
             *tour=*tour+1;
             *player=0;
             *distrib=*distrib-3; //we go back to the player at the left of the distributor
-} else {*distrib=*distrib+1;}
+    } else {
+        *distrib=*distrib+1;
+    }
 
 
 
@@ -101,11 +111,12 @@ void amount(int* b,int bet) {
 
 void trump(int* t) {
 
-    do { printf("Which trump ? 1: Heart, 2: Diamond, 3: Club, 4: Spade : ");
-    GetAndCheck(&*t);
-    printf("You have to choose a number between 1 and 4\n");
+    do {
+        printf("Which trump ? 1: Heart, 2: Diamond, 3: Club, 4: Spade : ");
+        GetAndCheck(&*t);
+        printf("You have to choose a number between 1 and 4\n");
 
-    }while((*t<1) || (*t>4)); //the loop continues until the player input a correct value
+    } while((*t<1) || (*t>4)); //the loop continues until the player input a correct value
 
 }
 
@@ -123,17 +134,24 @@ void bid(int *bet,int *trumpS) {
     //attribute the number of the trump corresponding to the input of the user
 
      if(t==1){
-        printf("heart\n");
-	*trumpS=0;
-    } else { if(t==2){
-        printf("diamond\n");
-	*trumpS=1;
-        } else { if(t==3){
-            printf("club\n");
-		*trumpS=2;
-            } else { if(t==4){
-                printf("spade\n");
-		*trumpS=3;}}}}
+        printf("Heart\n");
+        *trumpS=0;
+    } else {
+        if(t==2){
+            printf("Diamond\n");
+            *trumpS=1;
+        } else {
+            if(t==3){
+                printf("Club\n");
+            *trumpS=2;
+            } else {
+                if(t==4){
+                    printf("Spade\n");
+                    *trumpS=3;
+                    }
+                }
+            }
+        }
 
      *bet=b; //the value of the last bet is updated
 
@@ -146,17 +164,25 @@ void chooseTrump(CARD hand[],int *atrump){
 
     //count the number of cards of each color
 
-    for(i=0;i<8;i++){if(hand[i].color==0) {nbh++;
-        }else{if(hand[i].color==1){nbd++;
-            }else{if(hand[i].color==2){nbc++;
-                }else{nbs++;}}}}
+    for(i=0;i<8;i++){if(hand[i].color==0){
+        nbh++;
+        } else {
+            if(hand[i].color==1){nbd++;
+            } else {
+                if(hand[i].color==2){nbc++;
+                } else {
+                    nbs++;
+                }
+            }
+        }
+    }
 
     //compare the number of cards of each color
 
-    if(nbh>nbc && nbh>nbd && nbh>nbs){*atrump=0;}
-    if(nbd>nbh && nbd>nbc && nbd>nbs){*atrump=1;}
-    if(nbc>nbh && nbc>nbd && nbc>nbs){*atrump=2;}
-    if(nbs>nbh && nbs>nbd && nbs>nbc){*atrump=3;}
+    if(nbh>nbc && nbh>nbd && nbh>nbs){ *atrump=0; }
+    if(nbd>nbh && nbd>nbc && nbd>nbs){ *atrump=1; }
+    if(nbc>nbh && nbc>nbd && nbc>nbs){ *atrump=2; }
+    if(nbs>nbh && nbs>nbd && nbs>nbc){ *atrump=3; }
 
 }
 
@@ -179,7 +205,7 @@ void calculOrdi(CARD hand[],int *maxi,int atrump) {
         if(hand[i].color!=atrump && (hand[i].valeur!=7 || hand[i].valeur!=3)) {
                 loose++;} else {if(hand[i].color!=atrump && (hand[i].valeur<2 || hand[i].valeur==5)){
                     loose++;}}}
-    *maxi=170-loose*15;
+    *maxi= 170-loose*15 ;
 }
 
 
@@ -192,7 +218,8 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
                    if(*tour==0 && *pass==4){ //if all the players pass during the first tour
                     *stop=1; //variable enabling to get back to the beginning of the program
                     printf("everyone has passed, cards are distributed again\n\n");
-                    sleep(3);}
+
+                }
 
                      }
             else {*bet=*bet+10;
@@ -211,7 +238,9 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
             *tour=*tour+1;
             *player=0;
             *distrib=*distrib-3; //we go back to the player at the left of the distributor
-} else {*distrib=*distrib+1;} //next player
+    } else {
+        *distrib=*distrib+1;
+    } //next player
 
 }
 
@@ -219,37 +248,44 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 
 void winningContract(int *trump,int lastN,int lastS,int lastE,int lastW,int trumpE,int trumpN,int trumpS,int trumpW,int *contractNS,int *contractEW, int *distrib){
 
-    if(lastE>lastN && lastE>lastW && lastE>lastS){*trump=trumpE;
-                                                    *contractEW=lastE;
-                                                    *contractNS=0;
-                                                    printf("team E/W must realize %d\n",*contractEW);
-                                                    printf("Trump : ");
-                                                    displayTrump(*trump);
-                                                    *distrib=3;}
+    if(lastE>lastN && lastE>lastW && lastE>lastS){
+            *trump=trumpE;
+            *contractEW=lastE;
+            *contractNS=0;
+            printf("team E/W must realize %d\n",*contractEW);
+            printf("Trump : ");
+            displayTrump(*trump);
+            *distrib=3;
+    }
 
     if(lastN>lastE && lastN>lastW && lastN>lastS){*trump=trumpN;
-                                                    *contractNS=lastN;
-                                                    *contractEW=0;
-                                                    printf("team N/S must realize %d\n",*contractNS);
-                                                    printf("Trump : ");
-                                                    displayTrump(*trump);
-                                                    *distrib=0;}
+            *contractNS=lastN;
+            *contractEW=0;
+            printf("team N/S must realize %d\n",*contractNS);
+            printf("Trump : ");
+            displayTrump(*trump);
+            *distrib=0;
+    }
 
     if(lastW>lastE && lastW>lastN && lastW>lastS){*trump=trumpW;
-                                                    *contractEW=lastW;
-                                                    *contractNS=0;
-                                                    printf("team E/W must realize %d\n",*contractEW);
-                                                    printf("Trump : ");
-                                                    displayTrump(*trump);
-                                                    *distrib=1;}
+            *contractEW=lastW;
+            *contractNS=0;
+            printf("team E/W must realize %d\n",*contractEW);
+            printf("Trump : ");
+            displayTrump(*trump);
+            *distrib=1;
 
-    if(lastS>lastE && lastS>lastW && lastS>lastN){*trump=trumpS;
-                                                    *contractNS=lastS;
-                                                    *contractEW=0;
-                                                    printf("team N/S must realize %d\n",*contractNS);
-                                                    printf("Trump : ");
-                                                    displayTrump(*trump);
-                                                    *distrib=2;}
+    }
+
+    if(lastS>lastE && lastS>lastW && lastS>lastN){
+            *trump=trumpS;
+            *contractNS=lastS;
+            *contractEW=0;
+            printf("team N/S must realize %d\n",*contractNS);
+            printf("Trump : ");
+            displayTrump(*trump);
+            *distrib=2;
+    }
 
 
 }

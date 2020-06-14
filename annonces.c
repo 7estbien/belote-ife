@@ -40,7 +40,8 @@ void squareTest(CARD hand[],int *pts,int *square){
     }
     nbr=0;
     value++; //we go to the next value
-}}
+}
+}
 
 
 void sequence5Test(CARD hand[],int *pts){
@@ -72,12 +73,21 @@ void sequence5Test(CARD hand[],int *pts){
 
 
 
-if(ace==1 && king==1 && queen==1 && jack==1 && ten==1){*pts=100;}
-if(king==1 && queen==1 && jack==1 && ten==1 && nine==1){*pts=100;}
-if(queen==1 && jack==1 && ten==1 && nine==1 && eight==1){*pts=100;}
-if(jack==1 && ten==1 && nine==1 && eight==1 && seven==1){*pts=100;}
+            if(ace==1 && king==1 && queen==1 && jack==1 && ten==1){
+                    *pts=100;
+            }
+            if(king==1 && queen==1 && jack==1 && ten==1 && nine==1){
+                    *pts=100;
+            }
+            if(queen==1 && jack==1 && ten==1 && nine==1 && eight==1){
+                    *pts=100;
+            }
+            if(jack==1 && ten==1 && nine==1 && eight==1 && seven==1){
+                    *pts=100;
+            }
 
-}}
+    }
+}
 
 void sequence4Test(CARD hand[],int *pts){
 int k,col;
@@ -87,31 +97,57 @@ int k,col;
         int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
 
             for(k=0;k<8;k++){
+                if(hand[k].color==col && hand[k].valeur==7){
+                        ace=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==7){ace=1;}
+                if(hand[k].color==col && hand[k].valeur==6){
+                        king=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==6){king=1;}
+                if(hand[k].color==col && hand[k].valeur==5){
+                        queen=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==5){queen=1;}
+                if(hand[k].color==col && hand[k].valeur==4){
+                        jack=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==4){jack=1;}
+                if(hand[k].color==col && hand[k].valeur==3){
+                        ten=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==3){ten=1;}
+                if(hand[k].color==col && hand[k].valeur==2){
+                        nine=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==2){nine=1;}
+                if(hand[k].color==col && hand[k].valeur==1){
+                        eight=1;
+                }
 
-            if(hand[k].color==col && hand[k].valeur==1){eight=1;}
-
-            if(hand[k].color==col && hand[k].valeur==0){seven=1;}
+                if(hand[k].color==col && hand[k].valeur==0){
+                        seven=1;
+                    }
             }
 
-if(ace==1 && king==1 && queen==1 && jack==1){*pts=50;}
-if(king==1 && queen==1 && jack==1 && ten==1){*pts=50;}
-if(queen==1 && jack==1 && ten==1 && nine==1){*pts=50;}
-if(jack==1 && ten==1 && nine==1 && eight==1){*pts=50;}
-if(ten==1 && nine==1 && eight==1 && seven==1){*pts=50;}
+            if(ace==1 && king==1 && queen==1 && jack==1){
+                    *pts=50;
+            }
+            if(king==1 && queen==1 && jack==1 && ten==1){
+                    *pts=50;
+            }
+            if(queen==1 && jack==1 && ten==1 && nine==1){
+                    *pts=50;
+            }
+            if(jack==1 && ten==1 && nine==1 && eight==1){
+                    *pts=50;
+            }
+            if(ten==1 && nine==1 && eight==1 && seven==1){
+                    *pts=50;
+            }
 
-}}
+        }
+}
 
 
 void sequence3Test(CARD hand[],int *pts){
@@ -141,15 +177,28 @@ int k,col;
             if(hand[k].color==col && hand[k].valeur==0){seven=1;}
             }
 
-if(ace==1 && king==1 && queen==1){*pts=20;}
-if(king==1 && queen==1 && jack==1){*pts=20;}
-if(queen==1 && jack==1 && ten==1){*pts=20;}
-if(jack==1 && ten==1 && nine==1){*pts=20;}
-if(ten==1 && nine==1 && eight==1){*pts=20;}
-if(nine==1 && eight==1 && seven==1){*pts=20;}
+            if(ace==1 && king==1 && queen==1){
+                    *pts=20;
+            }
+            if(king==1 && queen==1 && jack==1){
+                    *pts=20;
+            }
+            if(queen==1 && jack==1 && ten==1){
+                    *pts=20;
+            }
+            if(jack==1 && ten==1 && nine==1){
+                    *pts=20;
+                    }
+            if(ten==1 && nine==1 && eight==1){
+                *pts=20;
+                }
+            if(nine==1 && eight==1 && seven==1){
+                *pts=20;
+            }
 
 
-}}
+        }
+}
 
 void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,int *stop){
 
@@ -238,7 +287,7 @@ case 1 :
         *stop=4;
         break;
     default :
-        printf("error all four\n");
+        printf("Error all four\n");
         break;
         }
     break;
@@ -255,7 +304,7 @@ case 2 :
         printf("You announce tierce\n");
         break;
     default :
-        printf("error tierce\n");
+        printf("Error tierce\n");
         break;
         }
     break;
@@ -272,7 +321,7 @@ case 3 :
         printf("You announce fifty\n");
         break;
     default :
-        printf("error fifty\n");
+        printf("Error fifty\n");
         break;
         }
     break;
@@ -289,7 +338,7 @@ case 4 :
         printf("You announce hundred\n");
         break;
     default :
-        printf("error hundred\n");
+        printf("Error hundred\n");
         break;
         }
     break;
@@ -323,12 +372,15 @@ do {
 
 } while (*stop==4);
 
-    *player=*player+1; //indicates the number of players that have played during one tour
+    *player=*player + 1; //indicates the number of players that have played during one round
 
-    //at the end of the tour when each player have announced something
-    if(*player==4) {*stop=3;
-                    *distrib=*distrib-3;
-        } else {*distrib=*distrib+1;}
+    //at the end of the round when each player have announced something
+    if(*player==4) {
+            *stop=3;
+            *distrib=*distrib-3;
+        } else {
+            *distrib=*distrib+1;
+        }
 
 }
 
