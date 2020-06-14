@@ -14,22 +14,22 @@ void squareTest(CARD hand[],int *pts,int *square){
 
         if(nbr==4){ switch(value) {
 
-                    case 2 :
+                    case 2 : //all four of nine
                         *pts=150;
                         break;
-                    case 3 :
+                    case 3 : //all four of ten
                         *pts=100;
                         break;
-                    case 4 :
+                    case 4 : //all four of jack
                         *pts=200;
                         break;
-                    case 5 :
+                    case 5 : //all four of queen
                         *pts=100;
                         break;
-                    case 6 :
+                    case 6 : //all four of king
                         *pts=100;
                         break;
-                    case 7 :
+                    case 7 : //all four of ace
                         *pts=100;
                         break;
 
@@ -49,6 +49,8 @@ void sequence5Test(CARD hand[],int *pts){
     int k,col;
 
     for(col=0;col<4;col++){
+
+        //check which cards of a given color are in the hand of the player
 
         int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
 
@@ -71,7 +73,7 @@ void sequence5Test(CARD hand[],int *pts){
             if(hand[k].color==col && hand[k].valeur==0){seven=1;}
             }
 
-
+// check if there is a sequence of 5 cards
 
             if(ace==1 && king==1 && queen==1 && jack==1 && ten==1){
                     *pts=100;
@@ -93,6 +95,8 @@ void sequence4Test(CARD hand[],int *pts){
 int k,col;
 
     for(col=0;col<4;col++){
+
+        //check which cards of a given color are in the hand of the player
 
         int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
 
@@ -130,6 +134,7 @@ int k,col;
                     }
             }
 
+<<<<<<< HEAD
             if(ace==1 && king==1 && queen==1 && jack==1){
                     *pts=50;
             }
@@ -145,6 +150,15 @@ int k,col;
             if(ten==1 && nine==1 && eight==1 && seven==1){
                     *pts=50;
             }
+=======
+// check if there is a sequence of 4 cards
+
+if(ace==1 && king==1 && queen==1 && jack==1){*pts=50;}
+if(king==1 && queen==1 && jack==1 && ten==1){*pts=50;}
+if(queen==1 && jack==1 && ten==1 && nine==1){*pts=50;}
+if(jack==1 && ten==1 && nine==1 && eight==1){*pts=50;}
+if(ten==1 && nine==1 && eight==1 && seven==1){*pts=50;}
+>>>>>>> b98774d47ea78a348b2b3273f4ae9a8f2db806a1
 
         }
 }
@@ -155,6 +169,8 @@ void sequence3Test(CARD hand[],int *pts){
 int k,col;
 
     for(col=0;col<4;col++){
+
+        //check which cards of a given color are in the hand of the player
 
         int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
 
@@ -177,6 +193,7 @@ int k,col;
             if(hand[k].color==col && hand[k].valeur==0){seven=1;}
             }
 
+<<<<<<< HEAD
             if(ace==1 && king==1 && queen==1){
                     *pts=20;
             }
@@ -195,6 +212,16 @@ int k,col;
             if(nine==1 && eight==1 && seven==1){
                 *pts=20;
             }
+=======
+// check if there is a sequence of 3 cards
+
+if(ace==1 && king==1 && queen==1){*pts=20;}
+if(king==1 && queen==1 && jack==1){*pts=20;}
+if(queen==1 && jack==1 && ten==1){*pts=20;}
+if(jack==1 && ten==1 && nine==1){*pts=20;}
+if(ten==1 && nine==1 && eight==1){*pts=20;}
+if(nine==1 && eight==1 && seven==1){*pts=20;}
+>>>>>>> b98774d47ea78a348b2b3273f4ae9a8f2db806a1
 
 
         }
