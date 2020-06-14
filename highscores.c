@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 // Function to get the number of lines in a file given its path.
 int lineCount(char* path)
@@ -84,6 +85,7 @@ void getLeaderboard()
         // We set the strings to the content of the splitted string.
         for(int j = 0; j < k; j++)
         {
+            printf("%c", name[j]);
             name[j] = board[j];
             scoreS[j] = board[j+k+1];
         }
@@ -109,20 +111,51 @@ void getLeaderboard()
 }
 
 // Function to swap two integers
-void swap(int *xp, int *yp)
+void swapInt(int *xp, int *yp)
 {
     int tmp = *xp;
     *xp = *yp;
     *yp = tmp;
 }
+void swapCharArray(char* xp[], char* yp[])
+{
+    char* tmp = *xp;
+    *xp = *yp;
+    *yp = tmp;
+}
 
 // Function to bubble sort an array of int and keep track of an array of strings
-void bubbleSort(int a[], char** b, int n)
+/* void bubbleSort(int a[], char** b, int n)
 {
     int i,j;
     for (i = 0; i < n-1; i++)
         for (j = 0; j < n-i-1; j++)
             if (a[j] > a[j+1])
+                printf("%s - %d pts\n", b[j], a[j]);
                 swap(&a[j], &a[j+1]);
-    swap(&b[j], &b[j+1]);
+                swap(&b[j], &b[j+1]);
+                printf("%s - %d pts", b[j], a[j]);
+} */
+
+void bubbleSort(int a[], char* b[], int n)
+{
+   int i, j;
+   bool swapped;
+   for (i = 0; i < n-1; i++)
+   {
+     swapped = false;
+     for (j = 0; j < n-i-1; j++)
+     {
+        if (a[j] < a[j+1])
+        {
+           swapInt(&a[j], &a[j+1]);
+           swapCharArray(&b[j], &b[j+1]);
+           swapped = true;
+        }
+     }
+
+     // IF no two elements were swapped by inner loop, then break
+     if (swapped == false)
+        break;
+   }
 }

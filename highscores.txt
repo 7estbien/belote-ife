@@ -1,4 +1,5 @@
-Alcibiade:100
-Lea:200
-Mathieu:12
-Julien:85
+Alcibiade:120
+Julien:150
+Arthur:162
+Jean:15
+Marc:985
