@@ -114,6 +114,10 @@ int main()
 
                 free(name);
 
+                printf("\nThanks for playing !");
+                return EXIT_SUCCESS;
+
+
             } while(stop!=3);
 
         break;

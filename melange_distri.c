@@ -18,12 +18,12 @@ void init(CARD game[]){
 
 void displayCard(CARD card)
 {
-char *ValCard[]={"seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"};
-char *ColCard[]={"hearts", "diamonds", "clubs", "spades"};
+    char *ValCard[]={"seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"};
+    char *ColCard[]={"hearts", "diamonds", "clubs", "spades"};
 
 
-printf(" %s of",ValCard[card.valeur]);
-printf(" %s ",ColCard[card.color]);
+    printf(" %s of",ValCard[card.valeur]);
+    printf(" %s ",ColCard[card.color]);
 
 }
 
