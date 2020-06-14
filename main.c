@@ -135,7 +135,7 @@ int main()
             printf("\nPlease enter your name : ");
 
             scanf("%s", &*name);
-            scoreWrite(name, bet);
+            scoreWrite(name, lastS);
 
             free(name);
 
