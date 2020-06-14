@@ -121,7 +121,6 @@ int main()
         case 2:
             printf("Leaderboard :\n");
             getLeaderboard();
-
         break;
 
         case 3:

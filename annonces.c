@@ -134,7 +134,6 @@ int k,col;
                     }
             }
 
-<<<<<<< HEAD
             if(ace==1 && king==1 && queen==1 && jack==1){
                     *pts=50;
             }
@@ -150,7 +149,6 @@ int k,col;
             if(ten==1 && nine==1 && eight==1 && seven==1){
                     *pts=50;
             }
-=======
 // check if there is a sequence of 4 cards
 
 if(ace==1 && king==1 && queen==1 && jack==1){*pts=50;}
@@ -158,7 +156,6 @@ if(king==1 && queen==1 && jack==1 && ten==1){*pts=50;}
 if(queen==1 && jack==1 && ten==1 && nine==1){*pts=50;}
 if(jack==1 && ten==1 && nine==1 && eight==1){*pts=50;}
 if(ten==1 && nine==1 && eight==1 && seven==1){*pts=50;}
->>>>>>> b98774d47ea78a348b2b3273f4ae9a8f2db806a1
 
         }
 }
@@ -193,7 +190,6 @@ int k,col;
             if(hand[k].color==col && hand[k].valeur==0){seven=1;}
             }
 
-<<<<<<< HEAD
             if(ace==1 && king==1 && queen==1){
                     *pts=20;
             }
@@ -212,7 +208,7 @@ int k,col;
             if(nine==1 && eight==1 && seven==1){
                 *pts=20;
             }
-=======
+
 // check if there is a sequence of 3 cards
 
 if(ace==1 && king==1 && queen==1){*pts=20;}
@@ -221,7 +217,7 @@ if(queen==1 && jack==1 && ten==1){*pts=20;}
 if(jack==1 && ten==1 && nine==1){*pts=20;}
 if(ten==1 && nine==1 && eight==1){*pts=20;}
 if(nine==1 && eight==1 && seven==1){*pts=20;}
->>>>>>> b98774d47ea78a348b2b3273f4ae9a8f2db806a1
+
 
 
         }
