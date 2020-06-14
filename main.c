@@ -150,7 +150,12 @@ int main()
 
             printf("\n\nGame finished. Your score is %d.\n", bet);
 
+<<<<<<< HEAD
             scoreWrite(name, bet);
+=======
+            scanf("%s", &*name);
+            scoreWrite(name, lastS);
+>>>>>>> 4250b99fa887f696091d1ddd1adfc939b7660025
 
             printf("\nThanks for playing !");
             return EXIT_SUCCESS;
