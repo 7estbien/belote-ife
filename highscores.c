@@ -21,6 +21,7 @@ int lineCount(){
 
 	fclose(file);
 	return lines;
+
 }
 
 
@@ -36,6 +37,7 @@ void scoreWrite(char* name, int score){
 void getLeaderboard(){
 
     FILE* file = fopen("highscores.txt","r"); //open highscores file in reading
+
 
     // Variables declaration
     char board[25];
@@ -56,7 +58,7 @@ void getLeaderboard(){
         bestPlayers[i] = malloc(15 * sizeof(char));
     }
 
-    while(fgets(board, sizeof board, file) != NULL){
+    while(fgets(board, sizeof board, file)){
         for(int i = 0; i < strlen(board); i++){
             if(board[i] == ':'){
                 k = i;
