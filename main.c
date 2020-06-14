@@ -15,6 +15,7 @@ int main()
     srand(time(NULL));
 
     // Variables initialization
+
     CARD game[32];
     CARD N[8],S[8],W[8],E[8];
     int distrib=0;
@@ -34,8 +35,21 @@ int main()
     int choice = 0;
     int size = 15;
     char * name = (char *) malloc(size * sizeof(char));
+    int* bestScores;
+    char** bestPlayers;
+    getLeaderboard(0, bestScores, bestPlayers);
 
-    displayMenu(1); // We display the n°1 menu, which is the home menu.
+
+    // Introduction screen
+    printf("Hello fellow player !\n");
+    printf("\nPlease enter your name : ");
+
+    scanf("%s", &*name);
+
+    // We clear the screen
+    system("@cls||clear");
+
+    displayMenu(1, name); // We display the n°1 menu, which is the home menu.
     scanf("%d", &choice);
 
 
@@ -44,11 +58,12 @@ int main()
     case 1:
         do
         {
-            init(game);
-            mixAndDisrti(game,N,S,E,W,&distrib);
-            displayHand(N,S,E,W,distrib);
+            system("@cls||clear");
+            init(game); // Starting the game
+            mixAndDistri(game,N,S,E,W,&distrib); // We distribute the cards
+            displayHand(N,S,E,W,distrib); // We display the different hands
             distrib++; // we go to the next player
-            stop=0;
+            stop = 0;
 
             do
             {
@@ -131,26 +146,23 @@ int main()
                 }
             }
 
+
+
             printf("\n\nGame finished. Your score is %d.\n", bet);
-            printf("\nPlease enter your name : ");
 
-            scanf("%s", &*name);
             scoreWrite(name, bet);
-
-            free(name);
 
             printf("\nThanks for playing !");
             return EXIT_SUCCESS;
 
 
-        }
-        while(stop!=3);
+            }
+            while(stop!=3);
 
         break;
 
     case 2:
-        printf("Leaderboard :\n");
-        getLeaderboard();
+        getLeaderboard(1, bestScores, bestPlayers); // We get the leaderboard and display it
         break;
 
     case 3:
@@ -159,7 +171,7 @@ int main()
         break;
     }
 
-
-    return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
 
 }
+

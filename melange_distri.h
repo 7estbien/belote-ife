@@ -9,7 +9,7 @@
 typedef struct {
     int valeur;
     int color;
-}CARD;
+} CARD;
 
 /**
 * Create the 32 cards of the game

@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-void displayMenu(int m)
+void displayMenu(int m, char* name)
 {
     switch(m)
     {
@@ -13,7 +13,7 @@ void displayMenu(int m)
         printf("*                             *\n");
         printf("*******************************\n");
 
-        printf("What do you want to do ?\n\n");
+        printf("What do you want to do, %s ?\n\n", name);
 
         printf("1 : Start a new game\n");
         printf("2 : Display the leaderboard\n");

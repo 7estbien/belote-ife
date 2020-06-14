@@ -19,7 +19,7 @@ void init(CARD game[])
 
 void displayCard(CARD card)
 {
-    char *ValCard[]= {"seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"};
+    char *ValCard[]= {"7", "8", "9", "10", "J", "Q", "K", "A"};
     char *ColCard[]= {"hearts", "diamonds", "clubs", "spades"};
 
 
@@ -30,7 +30,7 @@ void displayCard(CARD card)
 
 
 
-void mixAndDisrti(CARD game[],CARD N[],CARD S[],CARD E[],CARD W[],int* distrib)
+void mixAndDistri(CARD game[],CARD N[],CARD S[],CARD E[],CARD W[],int* distrib)
 {
     int i,r,temp=0;
     int tab[32];
@@ -151,31 +151,6 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
 {
     int i;
 
-    /**
-                printf("SOUTH\n");
-        for(i=0;i<8;i++){
-        displayCard(S[i]);
-        printf("\n");}
-
-        printf("NORTH\n");
-        for(i=0;i<8;i++){
-        displayCard(N[i]);
-        printf("\n");}
-
-        printf("EAST\n");
-        for(i=0;i<8;i++){
-
-        displayCard(E[i]);
-        printf("\n");}
-
-
-                printf("WEST\n");
-    for(i=0;i<8;i++){
-        displayCard(W[i]);
-        printf("\n");}
-
-
-    **/
     //display the players
 
     printf("\t\t\t\t\tNORTH\n\n\n\n\n");
@@ -198,23 +173,23 @@ void displayHand(CARD N[],CARD S[],CARD E[],CARD W[],int distrib)
 
     if (distrib==0)
     {
-        printf("\nNORTH distribute\n\n");
+        printf("\nNORTH distributes\n\n");
     }
     else
     {
         if(distrib==1)
         {
-            printf("\nWEST distribute\n\n");
+            printf("\nWEST distributes\n\n");
         }
         else
         {
             if (distrib==2)
             {
-                printf("\nSOUTH distribute\n\n");
+                printf("\nSOUTH distributes\n\n");
             }
             else
             {
-                printf("\nEAST distribute\n\n");
+                printf("\nEAST distributes\n\n");
             }
         }
     }

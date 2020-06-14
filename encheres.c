@@ -125,9 +125,9 @@ void action(int *player,int *tour,int *pass,int *distrib,int *bet,int *stop,int 
 void GetAndCheck(int *number)
 {
 
-    char input[5];
+    char input[6];
 
-    fgets(input,5,stdin);
+    fgets(input,6,stdin);
     *number=atoi(input);
 
 }
@@ -154,12 +154,12 @@ void trump(int* t)
 
     do
     {
-        printf("Which trump ? 1: Heart, 2: Diamond, 3: Club, 4: Spade : ");
+        printf("Which trump ? 1: Heart, 2: Diamond, 3: Club, 4: Spade\n");
+        printf("You can also play with 'All Trump' (5) or 'No Trump' (6).\n");
+        printf("You have to choose a number between 1 and 6\n\nChoice : ");
         GetAndCheck(&*t);
-        printf("You have to choose a number between 1 and 4\n");
-
     }
-    while((*t<1) || (*t>4));   //the loop continues until the player input a correct value
+    while((*t<1) || (*t>6));   //the loop continues until the player input a correct value
 
 }
 
@@ -177,35 +177,7 @@ void bid(int *bet,int *trumpS)
 
     //attribute the number of the trump corresponding to the input of the user
 
-    if(t==1)
-    {
-        printf("Heart\n");
-        *trumpS=0;
-    }
-    else
-    {
-        if(t==2)
-        {
-            printf("Diamond\n");
-            *trumpS=1;
-        }
-        else
-        {
-            if(t==3)
-            {
-                printf("Club\n");
-                *trumpS=2;
-            }
-            else
-            {
-                if(t==4)
-                {
-                    printf("Spade\n");
-                    *trumpS=3;
-                }
-            }
-        }
-    }
+    displayTrump(t);
 
     *bet=b; //the value of the last bet is updated
 
@@ -270,30 +242,31 @@ void chooseTrump(CARD hand[],int *atrump)
 void displayTrump(int trump)
 {
 
-    if(trump==0)
-    {
-        printf("heart\n\n");
-    }
-    else
-    {
-        if(trump==1)
-        {
-            printf("diamond\n\n");
-        }
-        else
-        {
-            if(trump==2)
-            {
-                printf("club\n\n");
-            }
-            else
-            {
-                if(trump==3)
-                {
-                    printf("spade\n\n");
-                }
-            }
-        }
+    switch(trump){
+        case 0:
+            printf("Heart\n\n");
+            break;
+
+        case 1:
+            printf("Diamond\n\n");
+            break;
+
+        case 2:
+            printf("Club\n\n");
+            break;
+
+        case 3:
+            printf("Spade\n\n");
+            break;
+
+        case 4:
+            printf("All Trump\n\n");
+            break;
+
+        case 5:
+            printf("No Trump\n\n");
+            break;
+
     }
 
 }
@@ -326,14 +299,14 @@ void calculOrdi(CARD hand[],int *maxi,int atrump)
 void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,int *distrib,int *stop,int *lastbet)
 {
 
-    if((*bet+10)>maxi)   //test if the AI can announce higher than the last player
+    if((*bet+10)>maxi)   // Test if the AI can announce higher than the last player
     {
-        printf("pass\n\n");
+        printf("Pass\n\n");
         *pass=*pass+1;
-        if(*tour==0 && *pass==4)  //if all the players pass during the first tour
+        if(*tour==0 && *pass==4)  // If all the players pass during the first tour
         {
             *stop=1; //variable enabling to get back to the beginning of the program
-            printf("everyone has passed, cards are distributed again\n\n");
+            printf("Everyone has passed, cards are distributed again.\n\n");
 
         }
 
@@ -353,13 +326,13 @@ void chooseAmount(int *bet,int maxi,int *player,int *tour,int *pass,int atrump,i
 
     *player=*player+1;
 
-//at the end of the tour when every player announced something
+    // At the end of the tour when every player announced something
 
     if(*player==4)
     {
         *tour=*tour+1;
         *player=0;
-        *distrib=*distrib-3; //we go back to the player at the left of the distributor
+        *distrib=*distrib-3; // We go back to the player at the left of the distributor
     }
     else
     {

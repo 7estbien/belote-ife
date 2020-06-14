@@ -1,5 +1,5 @@
 #include "annonces.h"
-
+#include <stdbool.h>
 
 void squareTest(CARD hand[],int *pts,int *square)
 {
@@ -146,7 +146,7 @@ void sequence4Test(CARD hand[],int *pts)
     for(col=0; col<4; col++)
     {
 
-        //check which cards of a given color are in the hand of the player
+        // Check which cards of a given color are in the hand of the player
 
         int ace=0,king=0,queen=0,jack=0,ten=0,nine=0,eight=0,seven=0;
 
@@ -362,7 +362,7 @@ void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,i
     {
 
     case 1 : // if the AI has an all four
-        printf("all four\n");
+        printf("All four\n");
         break;
 
     case 0 : // if the AI doesn't have an all four
@@ -370,7 +370,7 @@ void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,i
         switch (*pts)
         {
         case 100 : // if the AI has a sequence of 5 cards
-            printf("hundred\n");
+            printf("Hundred\n");
             break;
 
         case 0 : // if the AI doesn't have a sequence of 5 cards
@@ -378,7 +378,7 @@ void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,i
             switch(*pts)
             {
             case 50: // if the AI has a sequence of 4 cards
-                printf("fifty\n");
+                printf("Fifty\n");
                 break;
 
             case 0 : // if the AI doesn't have a sequence of 4 cards
@@ -386,15 +386,15 @@ void announcementsAI(CARD hand[],int *square,int *pts,int *distrib,int *player,i
                 switch(*pts)
                 {
                 case 20 : // if the AI has a sequence of 3 cards
-                    printf("tierce\n");
+                    printf("Tierce\n");
                     break;
 
                 case 0 : // if the AI has no sequence
-                    printf("pass\n");
+                    printf("Pass\n");
                     break;
 
                 default :
-                    printf("error\n");
+                    printf("Error\n");
                     break;
                 }
             }
@@ -454,7 +454,7 @@ void checkPlayer(CARD hand[],int *stop,int *square,int *pts,int act)
         switch (*square)
         {
         case 1 :
-            printf("You announce all four\n");
+            printf("You announce all four.\n");
             break;
         case 0 :
             printf("You can't announce something that you don't have\n");
@@ -473,7 +473,7 @@ void checkPlayer(CARD hand[],int *stop,int *square,int *pts,int act)
         switch (*pts)
         {
         case 0 :
-            printf("You can't announce something that you don't have\n");
+            printf("You can't announce something that you don't have.\n");
             *stop=4;
             break;
         case 20 :
@@ -491,7 +491,7 @@ void checkPlayer(CARD hand[],int *stop,int *square,int *pts,int act)
         switch (*pts)
         {
         case 0 :
-            printf("You can't announce something that you don't have\n");
+            printf("You can't announce something that you don't have.\n");
             *stop=4;
             break;
         case 50 :
@@ -509,7 +509,7 @@ void checkPlayer(CARD hand[],int *stop,int *square,int *pts,int act)
         switch(*pts)
         {
         case 0 :
-            printf("You can't announce something that you don't have\n");
+            printf("You can't announce something that you don't have.\n");
             *stop=4;
             break;
         case 100 :
@@ -526,7 +526,7 @@ void checkPlayer(CARD hand[],int *stop,int *square,int *pts,int act)
         break;
 
     default :
-        printf("error check\n");
+        printf("Error check\n");
         break;
 
     }

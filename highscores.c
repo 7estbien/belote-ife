@@ -41,7 +41,7 @@ void scoreWrite(char* name, int score)
 }
 
 // Function to get and print the sorted leaderboard
-void getLeaderboard()
+void getLeaderboard(int display, int* bestScores, char** bestPlayers)
 {
 
     FILE* file = fopen("highscores.txt","r"); //open highscores file in reading
@@ -54,8 +54,6 @@ void getLeaderboard()
     int score;
     int k = 0;
     int lines = lineCount("highscores.txt");
-    int* bestScores;
-    char** bestPlayers;
     int currentLine = 0;
 
     // We create 2 arrays with dynamic memory allocation : one array of strings for the players, and one array of integers for the scores.
@@ -85,7 +83,6 @@ void getLeaderboard()
         // We set the strings to the content of the splitted string.
         for(int j = 0; j < k; j++)
         {
-            printf("%c", name[j]);
             name[j] = board[j];
             scoreS[j] = board[j+k+1];
         }
@@ -100,13 +97,20 @@ void getLeaderboard()
 
     bubbleSort(bestScores, bestPlayers, lines); // We sort the best scores array using a bubble sort. We also keep a track of the name arrays.
 
-    printf("\nLEADERBOARD\n");
-    for(int i = 0; i < lines; i++)  // We print the content of the arrays to display the leaderboard.
-    {
-        printf("%d) %s - %d points\n", i+1, bestPlayers[i], bestScores[i]);
+    if(display == 1){
+        system("@cls||clear");
+        printf("\n====== LEADERBOARD ======\n\n");
+        for(int i = 0; i < lines; i++)  // We print the content of the arrays to display the leaderboard.
+        {
+            printf("%d) %s - %d points\n", i+1, bestPlayers[i], bestScores[i]);
 
+        }
+
+        getch();
     }
+
     fclose(file); // We close the file
+
 
 }
 
@@ -117,6 +121,7 @@ void swapInt(int *xp, int *yp)
     *xp = *yp;
     *yp = tmp;
 }
+// Function to swap strings
 void swapCharArray(char* xp[], char* yp[])
 {
     char* tmp = *xp;
@@ -124,38 +129,26 @@ void swapCharArray(char* xp[], char* yp[])
     *yp = tmp;
 }
 
-// Function to bubble sort an array of int and keep track of an array of strings
-/* void bubbleSort(int a[], char** b, int n)
-{
-    int i,j;
-    for (i = 0; i < n-1; i++)
-        for (j = 0; j < n-i-1; j++)
-            if (a[j] > a[j+1])
-                printf("%s - %d pts\n", b[j], a[j]);
-                swap(&a[j], &a[j+1]);
-                swap(&b[j], &b[j+1]);
-                printf("%s - %d pts", b[j], a[j]);
-} */
-
+// Function to bubble sort an array of int while keeping track of an array of strings
 void bubbleSort(int a[], char* b[], int n)
 {
    int i, j;
-   bool swapped;
+   bool s;
+
    for (i = 0; i < n-1; i++)
    {
-     swapped = false;
+     s = false;
      for (j = 0; j < n-i-1; j++)
      {
         if (a[j] < a[j+1])
         {
            swapInt(&a[j], &a[j+1]);
            swapCharArray(&b[j], &b[j+1]);
-           swapped = true;
+           s = true;
         }
      }
-
-     // IF no two elements were swapped by inner loop, then break
-     if (swapped == false)
+    // If nothing have been swapped, we break out of the loop
+     if (s == false)
         break;
    }
 }
