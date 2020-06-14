@@ -35,102 +35,128 @@ int main()
     int size = 15;
     char * name = (char *) malloc(size * sizeof(char));
 
-    displayMenu(1); // We display the nÂ°1 menu, which is the home menu.
+    displayMenu(1); // We display the n°1 menu, which is the home menu.
     scanf("%d", &choice);
 
 
-    switch (choice){
-        case 1:
-            do {init(game);
+    switch (choice)
+    {
+    case 1:
+        do
+        {
+            init(game);
             mixAndDisrti(game,N,S,E,W,&distrib);
             displayHand(N,S,E,W,distrib);
             distrib++; // we go to the next player
             stop=0;
 
-            do {
-                if (distrib==1 || distrib==5){
+            do
+            {
+                if (distrib==1 || distrib==5)
+                {
                     printf("WEST announces ");
                     chooseTrump(W,&trumpW);
                     calculOrdi(W,&maxW,trumpW);
                     chooseAmount(&bet,maxW,&player,&tour,&pass,trumpW,&distrib,&stop,&lastW);
 
-                    } else {
-                        if(distrib==0 || distrib==4){
+                }
+                else
+                {
+                    if(distrib==0 || distrib==4)
+                    {
 
-                            printf("NORTH announces ");
-                            chooseTrump(N,&trumpN);
-                            calculOrdi(N,&maxN,trumpN);
-                            chooseAmount(&bet,maxN,&player,&tour,&pass,trumpN,&distrib,&stop,&lastN);
-
-                            } else {
-                                if (distrib==3 || distrib==7) {
-
-                                    printf("EAST announces ");
-                                    chooseTrump(E,&trumpE);
-                                    calculOrdi(E,&maxE,trumpE);
-                                    chooseAmount(&bet,maxE,&player,&tour,&pass,trumpE,&distrib,&stop,&lastE);
-
-                                    } else {
-                                        action(&player,&tour,&pass,&distrib,&bet,&stop,&lastS,&trumpS,&coinche);
-                                        }
-                                    }
-                                }
-
-        } while(stop==0);
-
-        } while(stop==1);
-
-         winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW,&distrib);
-         player=0;
-
-                do{
-                    if (distrib==1 || distrib==5){
-                    printf("WEST announces ");
-                    announcementsAI(W,&squareW,&Wpts,&distrib,&player,&stop);
-
-
-                    } else {
-                        if(distrib==0 || distrib==4){
                         printf("NORTH announces ");
-                        announcementsAI(N,&squareN,&Npts,&distrib,&player,&stop);
+                        chooseTrump(N,&trumpN);
+                        calculOrdi(N,&maxN,trumpN);
+                        chooseAmount(&bet,maxN,&player,&tour,&pass,trumpN,&distrib,&stop,&lastN);
 
+                    }
+                    else
+                    {
+                        if (distrib==3 || distrib==7)
+                        {
 
-                            } else {
-                                if (distrib==3 || distrib==7) {
-                                printf("EAST announces ");
-                                announcementsAI(E,&squareE,&Epts,&distrib,&player,&stop);
+                            printf("EAST announces ");
+                            chooseTrump(E,&trumpE);
+                            calculOrdi(E,&maxE,trumpE);
+                            chooseAmount(&bet,maxE,&player,&tour,&pass,trumpE,&distrib,&stop,&lastE);
 
-                                } else {
-                                    announceP(S,&player,&distrib,&stop,&squareS,&Spts);
-                                }
-                            }
                         }
+                        else
+                        {
+                            action(&player,&tour,&pass,&distrib,&bet,&stop,&lastS,&trumpS,&coinche);
+                        }
+                    }
+                }
 
-                printf("\n\nGame finished. Your score is %d.\n", bet);
-                printf("\nPlease enter your name : ");
+            }
+            while(stop==0);
 
-                scanf("%s", &*name);
-                scoreWrite(name, bet);
+        }
+        while(stop==1);
 
-                free(name);
+        winningContract(&trump,lastN,lastS,lastE,lastW,trumpE,trumpN,trumpS,trumpW,&contractNS,&contractEW,&distrib);
+        player=0;
 
-                printf("\nThanks for playing !");
-                return EXIT_SUCCESS;
+        do
+        {
+            if (distrib==1 || distrib==5)
+            {
+                printf("WEST announces ");
+                announcementsAI(W,&squareW,&Wpts,&distrib,&player,&stop);
 
 
-            } while(stop!=3);
+            }
+            else
+            {
+                if(distrib==0 || distrib==4)
+                {
+                    printf("NORTH announces ");
+                    announcementsAI(N,&squareN,&Npts,&distrib,&player,&stop);
 
-        break;
 
-        case 2:
-            printf("Leaderboard :\n");
-            getLeaderboard();
-        break;
+                }
+                else
+                {
+                    if (distrib==3 || distrib==7)
+                    {
+                        printf("EAST announces ");
+                        announcementsAI(E,&squareE,&Epts,&distrib,&player,&stop);
 
-        case 3:
-            printf("See you later !");
+                    }
+                    else
+                    {
+                        announceP(S,&player,&distrib,&stop,&squareS,&Spts);
+                    }
+                }
+            }
+
+            printf("\n\nGame finished. Your score is %d.\n", bet);
+            printf("\nPlease enter your name : ");
+
+            scanf("%s", &*name);
+            scoreWrite(name, bet);
+
+            free(name);
+
+            printf("\nThanks for playing !");
             return EXIT_SUCCESS;
-            break;
+
+
+        }
+        while(stop!=3);
+
+        break;
+
+    case 2:
+        printf("Leaderboard :\n");
+        getLeaderboard();
+        break;
+
+    case 3:
+        printf("See you later !");
+        return EXIT_SUCCESS;
+        break;
     }
 
 
